@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/contact/create');
+});
+
+Route::get('/contact/create', function () {
+    return view('contact.create');
+});
+
+Route::post('/contact', function (Request $request) {
+    return view('contact.view',
+    [
+        'name' => $request->input('name'),
+        'address' => $request->input('address'),
+        'email' => $request->input('email'),
+        'content' => $request->input('content')
+    ]);
 });
