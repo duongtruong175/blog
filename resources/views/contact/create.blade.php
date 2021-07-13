@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +7,8 @@
 </head>
 <body>
     <h2>{{ __('Add') }}</h2>
-    <form action="/contact" method="POST">
+    <form action="{{ route('contacts.store') }}" method="POST">
+        @csrf
         <div>
             <label for="name">{{ __('Name') }}:</label>
             <input type="text" name="name" id="name" required maxlength="256">

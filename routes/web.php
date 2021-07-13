@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +16,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return redirect('/contact/create');
+    return redirect('/contacts');
 });
 
-Route::get('/contact/create', function () {
-    return view('contact.create');
-});
-
-Route::post('/contact', function (Request $request) {
-    return view('contact.view',
-    [
-        'name' => $request->input('name'),
-        'address' => $request->input('address'),
-        'email' => $request->input('email'),
-        'content' => $request->input('content')
-    ]);
-});
+Route::resource('contacts', ContactController::class);

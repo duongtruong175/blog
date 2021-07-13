@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,16 +7,16 @@
 </head>
 <body>
     <div>
-        <p>Name: {{ $name }}</p>
+        <p>Name: {{ $contact['name'] }}</p>
     </div>
     <div>
-        <p>Address: {{ $address }}</p>
+        <p>Address: {{ $contact['address'] }}</p>
     </div>
     <div>
-        <p>Email: {{ $email }}</p>
+        <p>Email: {{ $contact['email'] }}</p>
     </div>
     <div>
-        <p>Content: {{ $content }}</p>
+        <p>Content: {{ $contact['content'] }}</p>
     </div>
 </body>
 </html>
