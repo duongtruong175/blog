@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 
 /*
@@ -16,7 +15,13 @@ use App\Http\Controllers\ContactController;
 */
 
 Route::get('/', function () {
-    return redirect('/contacts');
+    return view('welcome');
 });
 
-Route::resource('contacts', ContactController::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::resource('/contacts', ContactController::class);

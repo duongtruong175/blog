@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
+        table {
+            width: 70%;
+        }
         table, tr, td{
             border: 1px solid black;
             border-collapse: collapse;

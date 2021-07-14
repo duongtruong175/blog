@@ -10,19 +10,19 @@
     <form action="{{ route('contacts.store') }}" method="POST">
         @csrf
         <div>
-            <label for="name">{{ __('Name') }}:</label>
+            <label for="name">Name:</label>
             <input type="text" name="name" id="name" required maxlength="256">
         </div>
         <div>
-            <label for="address">{{ __('Address') }}:</label>
+            <label for="address">Address:</label>
             <input type="text" name="address" id="address" required maxlength="256">
         </div>
         <div>
-            <label for="email">{{ __('Email') }}:</label>
+            <label for="email">Email:</label>
             <input type="email" name="email" id="email" required maxlength="256">
         </div>
         <div>
-            <label for="content">{{ __('Content') }}:</label>
+            <label for="content">Content:</label>
             <input type="text" name="content" id="content" required>
         </div>
         <div>
