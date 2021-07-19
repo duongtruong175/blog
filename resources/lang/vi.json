@@ -1,3 +1,10 @@
 {
-    "Add": "Thêm thông tin liên hệ"
+    "auth.failed": "Thông tin không khớp với cơ sở dữ liệu.",
+    "auth.password": "Mật khẩu cung cấp không chính xác.",
+    "auth.throttle": "Quá nhiều lần cố đăng nhập. Xin thử lại sau :seconds giây",
+    "passwords.reset": "Mật khẩu của bạn đã được đặt lại!",
+    "passwords.sent": "Email chứa đường dẫn đặt lại mật khẩu đã được gửi!",
+    "passwords.throttled": "Vui lòng đợi trước khi thử lại",
+    "passwords.token": "Token để đặt lại mật khẩu không chính xác.",
+    "passwords.user": "Không tồn tại người dùng nào có địa chỉ mail này."
 }

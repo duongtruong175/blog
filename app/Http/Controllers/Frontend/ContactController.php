@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 
@@ -16,7 +17,7 @@ class ContactController extends Controller
     {
         //
         $contacts = Contact::all();
-        return view('contact.index', ['contacts' => $contacts]);
+        return view('frontend.contact.index', ['contacts' => $contacts]);
     }
 
     /**
@@ -27,7 +28,7 @@ class ContactController extends Controller
     public function create()
     {
         //
-        return view('contact.create');
+        return view('frontend.contact.create');
     }
 
     /**
@@ -59,8 +60,8 @@ class ContactController extends Controller
     public function show($id)
     {
         //
-        $contact = Contact::find($id);
-        return view('contact.view', ['contact' => $contact]);
+        $contact = Contact::findOrFail($id);
+        return view('frontend.contact.view', ['contact' => $contact]);
     }
 
     /**
@@ -95,7 +96,7 @@ class ContactController extends Controller
     public function destroy($id)
     {
         //
-        $contact = Contact::find($id);
+        $contact = Contact::findOrFail($id);
         $contact->delete();
 
         return redirect()->action([ContactController::class, 'index']);
