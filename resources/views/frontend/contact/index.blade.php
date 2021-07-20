@@ -38,9 +38,7 @@
                                                 </div>
                                             </button>
                                         </a>
-                                        <div class="inline-block">
-                                            {{ ' | '}}
-                                        </div>
+                                        <div class="inline-block mx-3 h-5 w-px bg-gray-500"></div>
                                         <a class="inline-block">
                                             <form method="POST" action="{{ route('contacts.destroy', $contact->id) }}">
                                                 @csrf
