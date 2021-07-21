@@ -16,6 +16,6 @@ class BackendHomeController extends Controller
     public function __invoke(Request $request)
     {
         //
-        return view('backend.index');
+        return view('backend.home.index');
     }
 }

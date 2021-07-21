@@ -18,7 +18,7 @@ class BackendTagController extends Controller
      */
     public function index()
     {
-        // Lấy danh sách tất cả categories
+        // Lấy danh sách tất cả
         $tags = Tag::all();
 
         $viewdata = [

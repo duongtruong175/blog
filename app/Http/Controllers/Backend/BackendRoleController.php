@@ -18,7 +18,7 @@ class BackendRoleController extends Controller
      */
     public function index()
     {
-        // Lấy danh sách tất cả categories
+        // Lấy danh sách tất cả
         $roles = Role::all();
 
         $viewdata = [

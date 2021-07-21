@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="shadow mx-0">
-        <section class="py-8">
+        <div class="py-8">
             <div class="container px-4 mx-auto">
                 <!-- Dữ liệu bảng -->
                 <div class="px-8 py-5">
@@ -105,6 +105,6 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </x-backend_app-layout>

@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     // Home
-    Route::get('', BackendHomeController::class)
+    Route::get('/', BackendHomeController::class)
                     ->name('backend.home');
 
     // Dashboard
@@ -32,11 +32,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     
     // User
     Route::prefix('users')->group(function() {
-        Route::get('', [BackendUserController::class, 'index'])
+        Route::get('/', [BackendUserController::class, 'index'])
                     ->name('backend_user.index');
         Route::get('/create', [BackendUserController::class, 'create'])
                         ->name('backend_user.create');
-        Route::post('', [BackendUserController::class, 'store'])
+        Route::post('/', [BackendUserController::class, 'store'])
                         ->name('backend_user.store');
         Route::get('/{id}', [BackendUserController::class, 'show'])
                         ->name('backend_user.show');
@@ -50,11 +50,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
     // Role
     Route::prefix('roles')->group(function() {
-        Route::get('', [BackendRoleController::class, 'index'])
+        Route::get('/', [BackendRoleController::class, 'index'])
                     ->name('backend_role.index');
         Route::get('/create', [BackendRoleController::class, 'create'])
                         ->name('backend_role.create');
-        Route::post('', [BackendRoleController::class, 'store'])
+        Route::post('/', [BackendRoleController::class, 'store'])
                         ->name('backend_role.store');
         Route::get('/{id}', [BackendRoleController::class, 'show'])
                         ->name('backend_role.show');
@@ -68,11 +68,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     
     // Article
     Route::prefix('articles')->group(function() {
-        Route::get('', [BackendArticleController::class, 'index'])
+        Route::get('/', [BackendArticleController::class, 'index'])
                         ->name('backend_article.index');
         Route::get('/create', [BackendArticleController::class, 'create'])
                         ->name('backend_article.create');
-        Route::post('', [BackendArticleController::class, 'store'])
+        Route::post('/', [BackendArticleController::class, 'store'])
                         ->name('backend_article.store');
         Route::get('/{id}', [BackendArticleController::class, 'show'])
                         ->name('backend_article.show');
@@ -86,11 +86,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
     // Category
     Route::prefix('categories')->group(function() {
-        Route::get('', [BackendCategoryController::class, 'index'])
+        Route::get('/', [BackendCategoryController::class, 'index'])
                         ->name('backend_category.index');
         Route::get('/create', [BackendCategoryController::class, 'create'])
                         ->name('backend_category.create');
-        Route::post('', [BackendCategoryController::class, 'store'])
+        Route::post('/', [BackendCategoryController::class, 'store'])
                         ->name('backend_category.store');
         Route::get('/{id}', [BackendCategoryController::class, 'show'])
                         ->name('backend_category.show');
@@ -104,11 +104,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     
     // Tag
     Route::prefix('tags')->group(function() {
-        Route::get('', [BackendTagController::class, 'index'])
+        Route::get('/', [BackendTagController::class, 'index'])
                         ->name('backend_tag.index');
         Route::get('/create', [BackendTagController::class, 'create'])
                         ->name('backend_tag.create');
-        Route::post('', [BackendTagController::class, 'store'])
+        Route::post('/', [BackendTagController::class, 'store'])
                         ->name('backend_tag.store');
         Route::get('/{id}', [BackendTagController::class, 'show'])
                         ->name('backend_tag.show');
@@ -122,18 +122,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
     // Comment
     Route::prefix('comments')->group(function() {
-        Route::get('', [BackendCommentController::class, 'index'])
+        Route::get('/', [BackendCommentController::class, 'index'])
                         ->name('backend_comment.index');
-        Route::get('/create', [BackendCommentController::class, 'create'])
-                        ->name('backend_comment.create');
-        Route::post('', [BackendCommentController::class, 'store'])
-                        ->name('backend_comment.store');
         Route::get('/{id}', [BackendCommentController::class, 'show'])
                         ->name('backend_comment.show');
-        Route::get('/{id}/edit', [BackendCommentController::class, 'edit'])
-                        ->name('backend_comment.edit');
-        Route::put('/{id}', [BackendCommentController::class, 'update'])
-                        ->name('backend_comment.update');
         Route::delete('/{id}', [BackendCommentController::class, 'destroy'])
                         ->name('backend_comment.destroy');
     });

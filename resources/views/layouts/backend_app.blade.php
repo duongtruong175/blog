@@ -10,7 +10,7 @@
         @include('layouts.backend_header')
     </head>
     <body>
-        <div>
+        <div class="min-h-screen">
             <!-- Responsive thanh nav bên trái-->
             <nav class="lg:hidden py-6 px-6 border-b">
                 <div class="flex items-center justify-between">

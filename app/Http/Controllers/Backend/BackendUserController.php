@@ -18,7 +18,7 @@ class BackendUserController extends Controller
      */
     public function index()
     {
-        // Lấy danh sách tất cả categories
+        // Lấy danh sách tất cả
         $users = User::all();
 
         $viewdata = [

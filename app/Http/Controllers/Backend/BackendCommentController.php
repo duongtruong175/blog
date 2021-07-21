@@ -18,7 +18,7 @@ class BackendCommentController extends Controller
      */
     public function index()
     {
-        // Lấy danh sách tất cả categories
+        // Lấy danh sách tất cả
         $comments = Comment::all();
 
         $viewdata = [

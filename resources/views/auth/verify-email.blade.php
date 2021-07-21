@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-slot name="title">
         Verify Email
     </x-slot>
@@ -40,4 +40,4 @@
             </form>
         </div>
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>
