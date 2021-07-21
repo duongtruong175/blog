@@ -1,14 +1,14 @@
 <x-backend_app-layout>
     <x-slot name="title">
-        Categories
+        Roles
     </x-slot>
 
     <!-- Form thêm mới -->
     <div class="p-4 text-3xl mr-auto">
-        Add new category 
+        Add new role 
     </div>
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white sm:rounded-lg">
-        <form method="POST" action="{{ route('backend_category.store') }}">
+        <form method="POST" action="{{ route('backend_role.store') }}">
             @csrf
 
             <!-- Name -->

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class BackendRoleController extends Controller
 {
+    // Biến trỏ đến thư mục chứa các view
+    protected $folder = 'backend.role.';
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,14 @@ class BackendRoleController extends Controller
      */
     public function index()
     {
-        //
-        return view('backend.role.index');
+        // Lấy danh sách tất cả categories
+        $roles = Role::all();
+
+        $viewdata = [
+            'roles' => $roles
+        ];
+
+        return view($this->folder . 'index', $viewdata);
     }
 
     /**
@@ -25,7 +35,8 @@ class BackendRoleController extends Controller
      */
     public function create()
     {
-        //
+        // chuyển hướng đến trang thêm mới
+        return view($this->folder . 'create');
     }
 
     /**
@@ -36,7 +47,8 @@ class BackendRoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate errors
+
     }
 
     /**
@@ -58,7 +70,14 @@ class BackendRoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        // chuyển hướng đến trang sửa thông tin
+        $role = Role::findOrFail($id);
+
+        $viewdata = [
+            'role' => $role
+        ];
+
+        return view($this->folder . 'edit', $viewdata);
     }
 
     /**

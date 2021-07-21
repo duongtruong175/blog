@@ -40,7 +40,7 @@
                                     <td class="border px-4 py-2">
                                         <div class="flex justify-center items-center">
                                             <div class="inline-block">
-                                                <a class="flex items-center" href="{{ route('backend_category.show', $category->id) }}">
+                                                <a class="flex items-center" href="{{ route('backend_category.edit', $category->id) }}">
                                                     <span class="inline-block">
                                                         <x-edit-icon class="h-5 w-5 text-green-500 hover:text-gray-800" />
                                                     </span>

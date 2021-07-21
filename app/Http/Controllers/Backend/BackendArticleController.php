@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class BackendArticleController extends Controller
 {
+    // Biến trỏ đến thư mục chứa các view
+    protected $folder = 'backend.article.';
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,14 @@ class BackendArticleController extends Controller
      */
     public function index()
     {
-        //
-        return view('backend.article.index');
+        // Lấy danh sách tất cả categories
+        $articles = Article::all();
+
+        $viewdata = [
+            'articles' => $articles
+        ];
+
+        return view($this->folder . 'index', $viewdata);
     }
 
     /**
@@ -25,7 +35,8 @@ class BackendArticleController extends Controller
      */
     public function create()
     {
-        //
+        // chuyển hướng đến trang thêm mới
+        return view($this->folder . 'create');
     }
 
     /**
@@ -36,7 +47,8 @@ class BackendArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate errors
+
     }
 
     /**
@@ -58,7 +70,14 @@ class BackendArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        // chuyển hướng đến trang sửa thông tin
+        $article = Article::findOrFail($id);
+
+        $viewdata = [
+            'article' => $article
+        ];
+
+        return view($this->folder . 'edit', $viewdata);
     }
 
     /**

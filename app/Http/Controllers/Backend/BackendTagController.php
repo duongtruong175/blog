@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class BackendTagController extends Controller
 {
+    // Biến trỏ đến thư mục chứa các view
+    protected $folder = 'backend.tag.';
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,14 @@ class BackendTagController extends Controller
      */
     public function index()
     {
-        //
-        return view('backend.tag.index');
+        // Lấy danh sách tất cả categories
+        $tags = Tag::all();
+
+        $viewdata = [
+            'tags' => $tags
+        ];
+
+        return view($this->folder . 'index', $viewdata);
     }
 
     /**
@@ -25,7 +35,8 @@ class BackendTagController extends Controller
      */
     public function create()
     {
-        //
+        // chuyển hướng đến trang thêm mới
+        return view($this->folder . 'create');
     }
 
     /**
@@ -36,7 +47,8 @@ class BackendTagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate errors
+
     }
 
     /**
@@ -58,7 +70,14 @@ class BackendTagController extends Controller
      */
     public function edit($id)
     {
-        //
+        // chuyển hướng đến trang sửa thông tin
+        $tag = Tag::findOrFail($id);
+
+        $viewdata = [
+            'tag' => $tag
+        ];
+
+        return view($this->folder . 'edit', $viewdata);
     }
 
     /**

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class BackendCommentController extends Controller
 {
+    // Biến trỏ đến thư mục chứa các view
+    protected $folder = 'backend.comment.';
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,14 @@ class BackendCommentController extends Controller
      */
     public function index()
     {
-        //
-        return view('backend.comment.index');
+        // Lấy danh sách tất cả categories
+        $comments = Comment::all();
+
+        $viewdata = [
+            'comments' => $comments
+        ];
+
+        return view($this->folder . 'index', $viewdata);
     }
 
     /**
@@ -25,7 +35,8 @@ class BackendCommentController extends Controller
      */
     public function create()
     {
-        //
+        // chuyển hướng đến trang thêm mới
+        return view($this->folder . 'create');
     }
 
     /**
@@ -36,7 +47,8 @@ class BackendCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate errors
+
     }
 
     /**
@@ -58,7 +70,14 @@ class BackendCommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        // chuyển hướng đến trang sửa thông tin
+        $comment = Comment::findOrFail($id);
+
+        $viewdata = [
+            'comment' => $comment
+        ];
+
+        return view($this->folder . 'edit', $viewdata);
     }
 
     /**

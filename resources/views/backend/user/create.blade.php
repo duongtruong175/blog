@@ -1,20 +1,38 @@
 <x-backend_app-layout>
     <x-slot name="title">
-        Categories
+        Users
     </x-slot>
 
     <!-- Form thêm mới -->
     <div class="p-4 text-3xl mr-auto">
-        Add new category 
+        Add new user 
     </div>
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white sm:rounded-lg">
-        <form method="POST" action="{{ route('backend_category.store') }}">
+        <form method="POST" action="{{ route('backend_user.store') }}">
             @csrf
 
             <!-- Name -->
             <div>
                 <label for="name" class="block font-medium text-sm text-gray-700">Name</label>
                 <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="name" name="name" required autofocus />
+            </div>
+
+            <!-- Email -->
+            <div class="mt-4">
+                <label for="email" class="block font-medium text-sm text-gray-700">Email</label>
+                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="email" id="email" name="email" required />
+            </div>
+
+            <!-- Password -->
+            <div class="mt-4">
+                <label for="password" class="block font-medium text-sm text-gray-700">Password</label>
+                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="password" id="password" name="password" required />
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mt-4">
+                <label for="confirm_password" class="block font-medium text-sm text-gray-700">Confirm Password</label>
+                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="password" id="confirm_password" name="confirm_password" required />
             </div>
 
             <div class="mt-8 flex-row">

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BackendUserController extends Controller
 {
+    // Biến trỏ đến thư mục chứa các view
+    protected $folder = 'backend.user.';
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,14 @@ class BackendUserController extends Controller
      */
     public function index()
     {
-        //
-        return view('backend.user.index');
+        // Lấy danh sách tất cả categories
+        $users = User::all();
+
+        $viewdata = [
+            'users' => $users
+        ];
+
+        return view($this->folder . 'index', $viewdata);
     }
 
     /**
@@ -25,7 +35,8 @@ class BackendUserController extends Controller
      */
     public function create()
     {
-        //
+        // chuyển hướng đến trang thêm mới
+        return view($this->folder . 'create');
     }
 
     /**
@@ -36,7 +47,8 @@ class BackendUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate errors
+
     }
 
     /**
@@ -58,7 +70,14 @@ class BackendUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        // chuyển hướng đến trang sửa thông tin
+        $user = User::findOrFail($id);
+
+        $viewdata = [
+            'user' => $user
+        ];
+
+        return view($this->folder . 'edit', $viewdata);
     }
 
     /**

@@ -71,7 +71,14 @@ class BackendCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        // chuyển hướng đến trang sửa thông tin
+        $category = Category::findOrFail($id);
+
+        $viewdata = [
+            'category' => $category
+        ];
+
+        return view($this->folder . 'edit', $viewdata);
     }
 
     /**

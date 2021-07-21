@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 class BackendDashboardController extends Controller
 {
+    protected $folder = 'backend.dashboard.';
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +14,8 @@ class BackendDashboardController extends Controller
      */
     public function index()
     {
-        // Hien thi thong tin tong quan
-        return view('backend.dashboard.index');
+        // Hiển thị trang tổng quan, tổng hợp các thông số theo biểu đồ
+        
+        return view($this->folder . 'index');
     }
 }

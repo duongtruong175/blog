@@ -206,6 +206,21 @@
                                     </a>
                                 @else
                                 @endif
+                                @if(request()->routeIs('*.create'))
+                                    <span class="inline-block mx-3">
+                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                    </span>  
+                                    <span class="inline-block mr-2">
+                                        Create
+                                    </span>
+                                @elseif(request()->routeIs('*.edit'))
+                                    <span class="inline-block mx-3">
+                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                    </span>  
+                                    <span class="inline-block mr-2">
+                                        Edit
+                                    </span>
+                                @endif
                             </div>
                             <ul class="hidden lg:flex items-center space-x-6 mr-6">
                                 <li>

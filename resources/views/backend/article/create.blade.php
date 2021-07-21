@@ -1,20 +1,26 @@
 <x-backend_app-layout>
     <x-slot name="title">
-        Categories
+        Articles
     </x-slot>
 
     <!-- Form thêm mới -->
     <div class="p-4 text-3xl mr-auto">
-        Add new category 
+        Add new article 
     </div>
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white sm:rounded-lg">
-        <form method="POST" action="{{ route('backend_category.store') }}">
+        <form method="POST" action="{{ route('backend_article.store') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- Title -->
             <div>
-                <label for="name" class="block font-medium text-sm text-gray-700">Name</label>
-                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="name" name="name" required autofocus />
+                <label for="title" class="block font-medium text-sm text-gray-700">Title</label>
+                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="title" name="title" required autofocus />
+            </div>
+
+            <!-- Content -->
+            <div class="mt-4">
+                <label for="content" class="block font-medium text-sm text-gray-700">Content</label>
+                <textarea rows="10" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="content" name="content" required ></textarea>
             </div>
 
             <div class="mt-8 flex-row">
