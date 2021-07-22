@@ -3,7 +3,7 @@
         Users
     </x-slot>
 
-    <!-- Form thêm mới -->
+    <!-- Form create new -->
     <div class="p-4 text-3xl mr-auto">
         Add new user 
     </div>

@@ -4,6 +4,6 @@
     </x-slot>
     
     <h1>
-        Chào mừng đến với trang quản trị
+        Welcome to admin interface
     </h1>
 </x-backend_app-layout>

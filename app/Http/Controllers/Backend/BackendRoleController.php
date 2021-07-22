@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class BackendRoleController extends Controller
 {
-    // Biến trỏ đến thư mục chứa các view
+    // Variable to the directory contains a view
     protected $folder = 'backend.role.';
     
     /**
@@ -18,7 +18,7 @@ class BackendRoleController extends Controller
      */
     public function index()
     {
-        // Lấy danh sách tất cả
+        // get all data
         $roles = Role::all();
 
         $viewdata = [
@@ -35,7 +35,7 @@ class BackendRoleController extends Controller
      */
     public function create()
     {
-        // chuyển hướng đến trang thêm mới
+        // redict to create new form
         return view($this->folder . 'create');
     }
 
@@ -70,7 +70,7 @@ class BackendRoleController extends Controller
      */
     public function edit($id)
     {
-        // chuyển hướng đến trang sửa thông tin
+        // get data and redict to edit form
         $role = Role::findOrFail($id);
 
         $viewdata = [

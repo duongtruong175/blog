@@ -3,5 +3,5 @@
         Dashboard
     </x-slot>
     
-    <h1> Day la trang admin dashboard </h1>
+    <h1>this is admin dashboard </h1>
 </x-backend_app-layout>

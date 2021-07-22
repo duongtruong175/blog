@@ -1,13 +1,16 @@
 ### Laravel
 A project to learn laravel framework
 
-### Install
+## Install
 - Clone code
-- Run commands:
-+ composer install
-+ copy .env.example to .env
-- Mysql: Create database and edit config in .env file
-- Run commands: 
-+ php artisan migrate
-+ php artisan db:seed
-+ php artisan serve
+- Run commands:<br>
+composer install<br>
+copy .env.example to .env
+- Mysql:<br>
+Create database and edit config in .env file
+- Run commands:<br> 
+php artisan migrate<br>
+php artisan db:seed<br>
+php artisan serve
+
+## Usage

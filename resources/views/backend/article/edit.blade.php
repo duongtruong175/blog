@@ -3,7 +3,7 @@
         Articles
     </x-slot>
 
-    <!-- Form sửa -->
+    <!-- Form edit -->
     <div class="p-4 text-3xl mr-auto">
         Edit article
     </div>

@@ -4,6 +4,6 @@
     </x-slot>
 
     <div class="m-10 text-center">
-        <p class="text-2xl">Chào mừng bạn đến với trang blog của chúng tôi</p>
+        <p class="text-2xl">Welcome to our blog</p>
     </div>
 </x-app-layout>

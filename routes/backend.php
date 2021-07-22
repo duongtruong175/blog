@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 | Backend Routes
 |--------------------------------------------------------------------------
 |
-| Chứa các routes của phần backend sẽ sử dụng
-| middleware lọc người có quyền admin mới vào được tiếp
-| prefix -> đường dẫn: /admin/...
+| Contain routes of admin interface
 |
 */
 

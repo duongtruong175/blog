@@ -3,7 +3,7 @@
         Articles
     </x-slot>
 
-    <!-- Form thêm mới -->
+    <!-- Form Create new -->
     <div class="p-4 text-3xl mr-auto">
         Add new article 
     </div>

@@ -16,7 +16,7 @@ class AdminPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        // kiem tra quyen admin khi vao trang quan tri
+        // check admin permission
         // if (Auth::user() &&  Auth::user()->admin == 1) {
         //     return $next($request);
         // }

@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="min-h-screen">
-            <!-- Responsive thanh nav bên trái-->
+            <!-- Responsive Left Navigation-->
             <nav class="lg:hidden py-6 px-6 border-b">
                 <div class="flex items-center justify-between">
                     <div class="flex">
@@ -29,7 +29,7 @@
                 </div>
             </nav>
 
-            <!-- Nav bên trái -->
+            <!-- Left Navigation -->
             <div class="hidden lg:block navbar-menu relative z-50">
                 <div class="navbar-backdrop fixed lg:hidden inset-0 bg-gray-800 opacity-10"></div>
                 <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-2/4 lg:w-56 sm:w-56 pt-6 pb-8 bg-white border-r overflow-y-auto">
@@ -121,10 +121,10 @@
                 </nav>
             </div>
 
-            <!-- Container bên phải -->
+            <!-- Right Container -->
             <div class="mx-auto lg:ml-56">
-                <!-- header -->
-                <section class="py-2 lg:py-5 px-6 bg-white border-b">
+                <!-- Top Navigation -->
+                <div class="py-2 lg:py-5 px-6 bg-white border-b">
                     <nav class="relative">
                         <div class="flex items-center">
                             <div class="flex items-center mr-auto">
@@ -252,10 +252,10 @@
                             </div>
                         </div>
                     </nav>
-                </section>
+                </div>
 
                 <div class="m-8">
-                    <!-- Nội dung -->
+                    <!-- Page Content -->
                     <main>
                         {{ $slot }}
                     </main>

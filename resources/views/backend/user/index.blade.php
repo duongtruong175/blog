@@ -3,7 +3,7 @@
         Users
     </x-slot>
     
-    <!-- Header + Thêm mới -->
+    <!-- Header + Create new -->
     <div class="mb-8 flex items-center">
         <div class="p-4 text-3xl mr-auto">
             User table
@@ -18,7 +18,7 @@
     <div class="shadow mx-0">
         <div class="py-8">
             <div class="container px-4 mx-auto">
-                <!-- Dữ liệu bảng -->
+                <!-- Data table -->
                 <div class="px-8 py-5">
                     <table class="table-auto w-full text-center">
                         <thead>
@@ -76,7 +76,7 @@
                     </table>
                 </div>
                 
-                <!-- Thanh chia dữ liệu bảng -->
+                <!-- Paging Bar -->
                 <div class="flex flex-wrap justify-between pt-6">
                     <div class="w-full lg:w-auto mb-4 lg:mb-0 flex items-center">
                         <p class="mr-3 text-xs text-gray-400">Show</p>

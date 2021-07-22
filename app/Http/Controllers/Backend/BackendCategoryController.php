@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BackendCategoryController extends Controller
 {
 
-    // Biến trỏ đến thư mục chứa các view
+    // Variable to the directory contains a view
     protected $folder = 'backend.category.';
     
     /**
@@ -19,7 +19,7 @@ class BackendCategoryController extends Controller
      */
     public function index()
     {
-        // Lấy danh sách tất cả categories
+        // get all data
         $categories = Category::all();
 
         $viewdata = [
@@ -36,7 +36,7 @@ class BackendCategoryController extends Controller
      */
     public function create()
     {
-        // chuyển hướng đến trang thêm mới
+        // redict to create new form
         return view($this->folder . 'create');
     }
 
@@ -71,7 +71,7 @@ class BackendCategoryController extends Controller
      */
     public function edit($id)
     {
-        // chuyển hướng đến trang sửa thông tin
+        // get data and redict to edit form
         $category = Category::findOrFail($id);
 
         $viewdata = [

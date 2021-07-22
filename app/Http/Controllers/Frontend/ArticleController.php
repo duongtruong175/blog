@@ -7,15 +7,15 @@ use App\Models\Article;
 
 class ArticleController extends Controller
 {
-    // Biến trỏ đến thư mục chứa các view
+    // Variable to the directory contains a view
     protected $folder = 'frontend.article.';
     
     /**
-     * Hiển thị trang blog
+     * Display articles interface
      */
     public function index()
     {
-        // Lấy danh sách tất cả
+        // Get list of articles
         $articles = Article::all();
 
         $viewdata = [
@@ -26,17 +26,18 @@ class ArticleController extends Controller
     }
 
     /**
-     * Hiển thị chi tiết một bài
+     * Display detail article
      */
     public function show($id)
     {
-        // Lấy ra bài có id = $id
-        $article = Article::findOrFail($id);
+        // get article id = $id
+        // $article = Article::findOrFail($id);
 
-        $viewdata = [
-            'article' => $article
-        ];
+        // $viewdata = [
+        //     'article' => $article
+        // ];
 
-        return view($this->folder . 'detail', $viewdata);
+        // return view($this->folder . 'detail', $viewdata);
+        return view($this->folder . 'detail');
     }
 }

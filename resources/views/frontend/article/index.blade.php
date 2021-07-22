@@ -4,46 +4,68 @@
     </x-slot>
 
     <div class="mx-4 px-2 py-4 lg:flex">
-        <!-- Nội dung bên trái -->
+        <!-- Content Left -->
         <div class="w-full lg:w-3/4">
             <div class="py-8">
                 <div class="container px-4 mx-auto">
                     <div class="flex flex-wrap -m-4">
-                        <!-- Danh sách các bài -->
+                        <!-- List Articles -->
                         @forelse([1,2,3] as $item)
                             <div class="w-full lg:w-2/4 p-4">
-                                <div class="bg-white shadow rounded overflow-hidden">
-                                    <div class="pt-6 px-6 mb-10 flex justify-between items-center">
-                                        <span class="inline-flex items-center justify-center w-9 h-10 bg-gray-50 rounded">
-                                        <img class="h-6" src="artemis-assets/mini-logos/spotify.svg" alt="">
-                                        </span>
-                                        <a class="py-1 px-2 bg-blue-50 text-xs text-indigo-500 rounded-full" href="#">Pending</a>
+                                <div class="bg-white shadow rounded overflow-hidden sm:flex">
+                                    <div class="w-full sm:w-4/12 flex">
+                                        <div class="p-2 m-auto">
+                                            <img width="200" height="200" src="https://vantien.net/wp-content/uploads/2019/01/5826817b0ad24b8126df6762b54ae1b7.png" alt="What is Laravel">
+                                        </div>
                                     </div>
-                                    <div class="px-6 mb-6">
-                                        <h4 class="text-xl font-bold">Spotify</h4>
-                                        <p class="text-xs text-gray-500">Example of the team working on a project</p>
-                                    </div>
-                                    <div class="p-6 bg-lightGray-50">
-                                        <div class="flex -mx-2 mb-6">
-                                            <div class="w-1/2 px-2">
-                                                <p class="mb-2 text-xs font-medium">Final Date</p>
-                                                <span class="inline-block py-1 px-2 bg-orange-50 rounded-full text-xs text-red-500">14 March 2021</span>
+                                    <div class="w-full px-4 sm:w-8/12 sm:px-2 py-4">
+                                        <div class="mt-4 text-2xl border-b">
+                                            <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', 1) }}">What is Laravel</a>
+                                        </div>
+                                        <div class="text-sm mt-4 flex items-center text-center">
+                                            <div class="font-bold">
+                                                <p>Categories:</p>
                                             </div>
-                                            <div class="w-1/2 px-2">
-                                                <p class="mb-2 text-xs font-medium">Budget</p>
-                                                <span class="inline-block py-1 px-2 bg-green-50 rounded-full text-xs text-green-500">$12,500</span>
+                                            <div class="ml-2">
+                                                <p>News | Tutorial</p>
                                             </div>
                                         </div>
-                                        <div class="flex mb-6">
-                                            <img class="w-8 h-8 rounded-full object-cover object-right" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80" alt="">
-                                            <img class="w-8 h-8 -ml-2 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80" alt="">
-                                            <img class="w-8 h-8 -ml-2 rounded-full object-cover object-top" src="https://images.unsplash.com/photo-1528936466093-76ffdfcf7a40?ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="">
-                                            <img class="w-8 h-8 -ml-2 rounded-full object-cover" src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1055&amp;q=80" alt="">
-                                            <div class="flex items-center justify-center w-8 h-8 -ml-2 rounded-full bg-indigo-50 text-xs text-indigo-500">+3</div>
+                                        <div class="text-sm mt-4 flex items-center text-center">
+                                            <div class="font-bold">
+                                                <p>Tags:</p>
+                                            </div>
+                                            <div class="ml-2">
+                                                <p>Learning</p>
+                                            </div>
                                         </div>
-                                        <p class="mb-2 text-xs font-medium">During the testing</p>
-                                        <div class="relative w-full h-1 mb-3 rounded-full bg-blue-100">
-                                            <div class="absolute top-0 left-0 h-full w-1/2 rounded-full bg-purple-500"></div>
+                                        <div class="text-sm mt-4 flex items-center text-center text-gray-500">
+                                            <x-comment-icon width="20" height="20"/>
+                                            <span class="ml-1">
+                                                2
+                                            </span>
+                                        </div>
+                                        <div class="text-sm my-4">
+                                            <p>
+                                                {{ substr('What is Laravel?
+                                                The short version, is that Laravel is a PHP MVC Framework. The long version would be, Laravel is a free and open-source PHP Framework for Web Artisans based on Symfony.
+                                                
+                                                It helps craft Web Applications following the MVC (Model View Controller) design pattern. In order for us to better understand Laravel, we will build a simple blog application with Laravel from scratch.
+                                                
+                                                Requirements: To create a Laravel application you will need a few tools installed in your computer.
+                                                
+                                                These tools include:
+                                                
+                                                PHP >= 7.3.
+                                                Database (MySql).
+                                                A localhost Web Server – In our case we’ll use WAMP (for Windows), LAMP (for Linux), or MAMP (for MacOs). This localhost webserver comes installed with latest PHP and MySQL database so you will not need to install them manually. To install either MAMP, LAMP, or WAMP go to http://ampps.com/downloads and choose the software your platform.
+                                                Composer – This is a dependency management software for PHP. To install the composer visit https://getcomposer.org/ and download it there for your platform.
+                                                Node.js – This is a free and open source JavaScript runtime environment that executes JavaScript outside of the browser. We will not write any Node.js code but it will be used in the background by Laravel to streamline our development.
+                                                Code editor – A code editor will be required. We recommend to use Visual Studio Code: It is free.
+                                                A browser – Google Chrome, Edge, Safari, or Mozilla Firefox will do just fine.
+                                                Background knowledge of the PHP Programming Language.
+                                                With our machine setup complete, it’s time to start developing.', 0, 400) }}
+                                                ... <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', 1) }}">Read full article</a>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +78,7 @@
                     </div>
 
                     @if([1,2,3])
-                        <!-- Thanh chia dữ liệu bảng -->
+                        <!-- Paging Bar -->
                         <div class="flex flex-wrap justify-between pt-6">
                             <div class="w-full lg:w-auto mb-4 lg:mb-0 flex items-center">
                                 <p class="mr-3 text-xs text-gray-400">Show</p>
@@ -104,11 +126,11 @@
             </div>
         </div>
 
-        <!-- Thanh nav bên phải -->
+        <!-- Nav Right -->
         <div class="w-full lg:w-1/4">
             <div class="py-8 mx-3">
                 <div class="shadow">
-                    <div class="text-xl font-bold p-4 border-b">
+                    <div class="text-xl font-bold p-4 bg-gray-100">
                         Search by keyword
                     </div>
                     <div class="pl-4 py-4">
@@ -119,7 +141,7 @@
                     </div>
                 </div>
                 <div class="shadow mt-6">
-                    <div class="text-xl font-bold p-4 border-b">
+                    <div class="text-xl font-bold p-4 bg-gray-100">
                         Categories
                     </div>
                     <div class="text-sm">
@@ -132,12 +154,12 @@
                     </div>
                 </div>
                 <div class="shadow mt-6">
-                    <div class="text-xl font-bold p-4 border-b">
+                    <div class="text-xl font-bold p-4 bg-gray-100">
                         Tags
                     </div>
                     <div class="text-sm">
                         <ul class="pl-10 py-6">
-                            <li><a href="#">Learn</a></li>
+                            <li><a href="#">Learning</a></li>
                             <li class="pt-3"><a href="#">For Fun</a></li>
                             <li class="pt-3"><a href="#">Machine learning</a></li>
                         </ul>

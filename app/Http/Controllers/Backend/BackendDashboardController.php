@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 class BackendDashboardController extends Controller
 {
+    // Variable to the directory contains a view
     protected $folder = 'backend.dashboard.';
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class BackendDashboardController extends Controller
      */
     public function index()
     {
-        // Hiển thị trang tổng quan, tổng hợp các thông số theo biểu đồ
-        
+        // Display dashboard page: contain data statistics
         return view($this->folder . 'index');
     }
 }

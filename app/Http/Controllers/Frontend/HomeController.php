@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -13,7 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Hiển thị trang chủ
+        //
         return view($this->folder . 'index');
     }
 
@@ -22,7 +21,7 @@ class HomeController extends Controller
      */
     public function about()
     {
-        // Hiển thị trang about
+        //
         return view($this->folder . 'about');
     }
 }
