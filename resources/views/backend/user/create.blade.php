@@ -31,8 +31,8 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <label for="confirm_password" class="block font-medium text-sm text-gray-700">Confirm Password</label>
-                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="password" id="confirm_password" name="confirm_password" required />
+                <label for="password_confirmation" class="block font-medium text-sm text-gray-700">Confirm Password</label>
+                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="password" id="password_confirmation" name="password_confirmation" required />
             </div>
 
             <div class="mt-8 flex-row">

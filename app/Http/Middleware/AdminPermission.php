@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPermission
 {
@@ -16,12 +17,16 @@ class AdminPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        // check admin permission
-        // if (Auth::user() &&  Auth::user()->admin == 1) {
-        //     return $next($request);
-        // }
-
-        // return redirect('/');
-        return $next($request);
+        //check admin permission
+        if (Auth::check()) {
+            foreach(Auth::user()->roles as $role) {
+                if($role->name === 'admin') {
+                    return $next($request);
+                }
+            }
+        }
+        
+        // if don't have permission
+        abort(403);
     }
 }

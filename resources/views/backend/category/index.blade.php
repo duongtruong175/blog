@@ -19,25 +19,25 @@
         <div class="py-8">
             <div class="container px-4 mx-auto">
                 <!-- Data table -->
-                <div class="px-8 py-5">
-                    <table class="table-auto w-full text-center">
+                <div class="px-4 py-4 overflow-x-auto">
+                    <table class="table-auto w-full text-center text-sm">
                         <thead>
                             <tr>
-                                <th class="border px-4 py-2">ID</th>
-                                <th class="border px-4 py-2">Name</th>
-                                <th class="border px-4 py-2">Created At</th>
-                                <th class="border px-4 py-2">Updated At</th>
-                                <th class="border px-4 py-2">Action</th>
+                                <th class="border px-2 py-2">ID</th>
+                                <th class="border px-2 py-2">Name</th>
+                                <th class="border px-2 py-2">Created at</th>
+                                <th class="border px-2 py-2">Updated at</th>
+                                <th class="border px-2 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($categories as $category)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $category->id }}</td>
-                                    <td class="border px-4 py-2">{{ $category->name }}</td>
-                                    <td class="border px-4 py-2">{{ $category->created_at }}</td>
-                                    <td class="border px-4 py-2">{{ $category->updated_at }}</td>
-                                    <td class="border px-4 py-2">
+                                    <td class="border px-2 py-2">{{ $category->id }}</td>
+                                    <td class="border px-2 py-2">{{ $category->name }}</td>
+                                    <td class="border px-2 py-2">{{ $category->created_at }}</td>
+                                    <td class="border px-2 py-2">{{ $category->updated_at }}</td>
+                                    <td class="border px-2 py-2">
                                         <div class="flex justify-center items-center">
                                             <div class="inline-block">
                                                 <a class="flex items-center" href="{{ route('backend_category.edit', $category->id) }}">

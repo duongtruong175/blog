@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -45,10 +46,16 @@ class BackendTagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTagRequest $request)
     {
-        // Validate errors
+        // Validate errors (StoreTagRequest validated)
+        $name = preg_replace('/\s\s+/', ' ', $request->name);
+        $tag = Tag::create([
+            'name' => $name
+        ]);
+        
 
+        return redirect()->route('backend_tag.index');
     }
 
     /**
@@ -87,9 +94,16 @@ class BackendTagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTagRequest $request, $id)
     {
         //
+        $tag = Tag::findOrFail($id);
+        $name = preg_replace('/\s\s+/', ' ', $request->name);
+        $tag->name = $name;
+
+        $tag->save();
+
+        return redirect()->route('backend_tag.index');
     }
 
     /**
@@ -101,5 +115,10 @@ class BackendTagController extends Controller
     public function destroy($id)
     {
         //
+        $tag = Tag::findOrFail($id);
+
+        $tag->delete();
+
+        return redirect()->route('backend_tag.index');
     }
 }

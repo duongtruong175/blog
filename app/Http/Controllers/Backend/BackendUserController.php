@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class BackendUserController extends Controller
 {
@@ -45,10 +48,16 @@ class BackendUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        // Validate errors
+        // Validate errors (StoreUserRequest validated)
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
+        return redirect()->route('backend_user.index');
     }
 
     /**
@@ -90,6 +99,16 @@ class BackendUserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Validator::make($request->all(), [
+            'name' => 'required|string|max:255'
+        ])->validate();
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+
+        $user->save();
+
+        return redirect()->route('backend_user.index');
     }
 
     /**
@@ -101,5 +120,10 @@ class BackendUserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        
+        $user->delete();
+
+        return redirect()->route('backend_user.index');
     }
 }

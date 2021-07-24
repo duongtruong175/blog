@@ -122,8 +122,6 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::prefix('comments')->group(function() {
         Route::get('/', [BackendCommentController::class, 'index'])
                         ->name('backend_comment.index');
-        Route::get('/{id}', [BackendCommentController::class, 'show'])
-                        ->name('backend_comment.show');
         Route::delete('/{id}', [BackendCommentController::class, 'destroy'])
                         ->name('backend_comment.destroy');
     });

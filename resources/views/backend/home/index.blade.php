@@ -3,7 +3,9 @@
         Admin
     </x-slot>
     
-    <h1>
-        Welcome to admin interface
-    </h1>
+    <div class="w-full">
+        <div class="text-3xl p-16 text-center font-semibold">
+            Welcome to admin interface
+        </div>
+    </div>
 </x-backend_app-layout>

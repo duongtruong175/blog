@@ -48,5 +48,43 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    /**
+     * Get the user that owns the article.
+     * Parameter second of belongsTo() is name of foreign_key
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     
+    /**
+     * Get all categories owned by article and return links to view them
+     * href="'.route('articles.index').'?category_id='.$category->id.'"
+     */
+    public function getCategoriesLinksAttribute()
+    {
+        $categories = $this->categories()->get()->map(function($category) {
+            return '<a class="text-blue-500">'.$category->name.'</a>';
+        })->implode(' | ');
+
+        if ($categories == '') return 'none';
+
+        return $categories;
+    }
+
+    /**
+     * Get all tags owned by article and return links to view them
+     * href="'.route('articles.index').'?tag_id='.$tag->id.'"
+     */
+    public function getTagsLinksAttribute()
+    {
+        $tags = $this->tags()->get()->map(function($tag) {
+            return '<a class="text-blue-500">'.$tag->name.'</a>';
+        })->implode(' | ');
+
+        if ($tags == '') return 'none';
+
+        return $tags;
+    }
 }

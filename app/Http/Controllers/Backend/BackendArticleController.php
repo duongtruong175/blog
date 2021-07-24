@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BackendArticleController extends Controller
 {
@@ -18,11 +20,20 @@ class BackendArticleController extends Controller
      */
     public function index()
     {
-        // get all data
-        $articles = Article::all();
+        // get all articles
+        $articles = Article::with('user')->get();
 
+        // get articles owned by User
+        $own_articles = array();
+        foreach($articles as $article) {
+            if(Auth::id() === $article->user_id) {
+                array_push($own_articles, $article);
+            }
+        }
+        
         $viewdata = [
-            'articles' => $articles
+            'articles' => $articles,
+            'own_articles' => $own_articles,
         ];
 
         return view($this->folder . 'index', $viewdata);
@@ -45,10 +56,16 @@ class BackendArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        // Validate errors
+        // Validate errors (StoreArticleRequest validated)
+        $article = Article::create([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
 
+        return redirect()->route('backend_article.index');
     }
 
     /**
@@ -70,14 +87,19 @@ class BackendArticleController extends Controller
      */
     public function edit($id)
     {
-        // get data and redict to edit form
+        // check admin have permission to edit article ?
+        // only admin create article so can edit it
+
+        // get data and redict to edit form if have permission
         $article = Article::findOrFail($id);
 
-        $viewdata = [
-            'article' => $article
-        ];
-
-        return view($this->folder . 'edit', $viewdata);
+        if($article->user_id === Auth::id()) {
+            $viewdata = [
+                'article' => $article
+            ];
+    
+            return view($this->folder . 'edit', $viewdata);
+        }
     }
 
     /**
@@ -87,9 +109,16 @@ class BackendArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreArticleRequest $request, $id)
     {
         //
+        $article = Article::findOrFail($id);
+        $article->title = $request->title;
+        $article->content = $request->content;
+
+        $article->save();
+        
+        return redirect()->route('backend_article.index');
     }
 
     /**
@@ -101,5 +130,10 @@ class BackendArticleController extends Controller
     public function destroy($id)
     {
         //
+        $article = Article::findOrFail($id);
+        
+        $article->delete();
+
+        return redirect()->route('backend_article.index');
     }
 }

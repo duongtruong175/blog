@@ -13,32 +13,32 @@
         <div class="py-8">
             <div class="container px-4 mx-auto">
                 <!-- Data table -->
-                <div class="px-8 py-5">
-                    <table class="table-auto w-full text-center">
+                <div class="px-4 py-4 overflow-x-auto">
+                    <table class="table-auto w-full text-center text-sm">
                         <thead>
                             <tr>
-                                <th class="border px-4 py-2">ID</th>
-                                <th class="border px-4 py-2">Article Title</th>
-                                <th class="border px-4 py-2">User Created</th>
-                                <th class="border px-4 py-2">Content</th>
-                                <th class="border px-4 py-2">Created At</th>
-                                <th class="border px-4 py-2">Updated At</th>
-                                <th class="border px-4 py-2">Action</th>
+                                <th class="border px-2 py-2">ID</th>
+                                <th class="border px-2 py-2">Article title</th>
+                                <th class="border px-2 py-2">User created</th>
+                                <th class="border px-2 py-2">Content</th>
+                                <th class="border px-2 py-2">Created at</th>
+                                <th class="border px-2 py-2">Updated at</th>
+                                <th class="border px-2 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($comments as $comment)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $comment->id }}</td>
-                                    <td class="border px-4 py-2">{{ $comment->article_id }}</td>
-                                    <td class="border px-4 py-2">{{ $comment->user_id }}</td>
-                                    <td class="border px-4 py-2">{{ $comment->content }}</td>
-                                    <td class="border px-4 py-2">{{ $comment->created_at }}</td>
-                                    <td class="border px-4 py-2">{{ $comment->updated_at }}</td>
-                                    <td class="border px-4 py-2">
+                                    <td class="border px-2 py-2">{{ $comment->id }}</td>
+                                    <td class="border px-2 py-2">{{ $comment->article->title }}</td>
+                                    <td class="border px-2 py-2">{{ $comment->user->name }}</td>
+                                    <td class="border px-2 py-2">{{ $comment->content }}</td>
+                                    <td class="border px-2 py-2">{{ $comment->created_at }}</td>
+                                    <td class="border px-2 py-2">{{ $comment->updated_at }}</td>
+                                    <td class="border px-2 py-2">
                                         <div class="flex justify-center items-center">
                                             <div class="inline-block">
-                                                <form action="{{ route('backend_comment.destroy', $category->id) }}" method="POST">
+                                                <form action="{{ route('backend_comment.destroy', $comment->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="flex items-center" type="submit">

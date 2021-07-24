@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -45,10 +46,14 @@ class BackendRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        // Validate errors
+        // Validate errors (StoreRoleRequest validated)
+        $role = Role::create([
+            'name' => $request->name
+        ]);
 
+        return redirect()->route('backend_role.index');
     }
 
     /**
@@ -87,9 +92,15 @@ class BackendRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRoleRequest $request, $id)
     {
         //
+        $role = Role::findOrFail($id);
+        $role->name = $request->name;
+
+        $role->save();
+
+        return redirect()->route('backend_role.index');
     }
 
     /**
@@ -101,5 +112,10 @@ class BackendRoleController extends Controller
     public function destroy($id)
     {
         //
+        $role = Role::findOrFail($id);
+        
+        $role->delete();
+
+        return redirect()->route('backend_role.index');
     }
 }

@@ -6,5 +6,7 @@
     "passwords.sent": "Email chứa đường dẫn đặt lại mật khẩu đã được gửi!",
     "passwords.throttled": "Vui lòng đợi trước khi thử lại",
     "passwords.token": "Token để đặt lại mật khẩu không chính xác.",
-    "passwords.user": "Không tồn tại người dùng nào có địa chỉ mail này."
+    "passwords.user": "Không tồn tại người dùng nào có địa chỉ mail này.",
+    "previous": "&laquo; Trước",
+    "next": "Tiếp &raquo;"
 }

@@ -19,25 +19,25 @@
         <div class="py-8">
             <div class="container px-4 mx-auto">
                 <!-- Data table -->
-                <div class="px-8 py-5">
-                    <table class="table-auto w-full text-center">
+                <div class="px-4 py-4 overflow-x-auto">
+                    <table class="table-auto w-full text-center text-sm">
                         <thead>
                             <tr>
-                                <th class="border px-4 py-2">ID</th>
-                                <th class="border px-4 py-2">Name</th>
-                                <th class="border px-4 py-2">Created At</th>
-                                <th class="border px-4 py-2">Updated At</th>
-                                <th class="border px-4 py-2">Action</th>
+                                <th class="border px-2 py-2">ID</th>
+                                <th class="border px-2 py-2">Name</th>
+                                <th class="border px-2 py-2">Created at</th>
+                                <th class="border px-2 py-2">Updated at</th>
+                                <th class="border px-2 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($tags as $tag)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $tag->id }}</td>
-                                    <td class="border px-4 py-2">{{ $tag->name }}</td>
-                                    <td class="border px-4 py-2">{{ $tag->created_at }}</td>
-                                    <td class="border px-4 py-2">{{ $tag->updated_at }}</td>
-                                    <td class="border px-4 py-2">
+                                    <td class="border px-2 py-2">{{ $tag->id }}</td>
+                                    <td class="border px-2 py-2">{{ $tag->name }}</td>
+                                    <td class="border px-2 py-2">{{ $tag->created_at }}</td>
+                                    <td class="border px-2 py-2">{{ $tag->updated_at }}</td>
+                                    <td class="border px-2 py-2">
                                         <div class="flex justify-center items-center">
                                             <div class="inline-block">
                                                 <a class="flex items-center" href="{{ route('backend_tag.edit', $tag->id) }}">

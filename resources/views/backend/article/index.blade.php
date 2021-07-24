@@ -19,46 +19,52 @@
         <div class="py-8">
             <div class="container px-4 mx-auto">
                 <!-- Data table -->
-                <div class="px-8 py-5">
-                    <table class="table-auto w-full text-center">
+                <div class="px-4 py-4 overflow-x-auto">
+                    <table class="table-auto w-full text-center text-sm">
                         <thead>
                             <tr>
-                                <th class="border px-4 py-2">ID</th>
-                                <td class="border px-4 py-2">User Created</td>
-                                <th class="border px-4 py-2">Title</th>
-                                <th class="border px-4 py-2">Content</th>
-                                <th class="border px-4 py-2">Created At</th>
-                                <th class="border px-4 py-2">Updated At</th>
-                                <th class="border px-4 py-2">Action</th>
+                                <th class="border px-2 py-2">ID</th>
+                                <th class="border px-2 py-2">User created</th>
+                                <th class="border px-2 py-2">Title</th>
+                                <th class="border px-2 py-2">Content</th>
+                                <th class="border px-2 py-2">Created at</th>
+                                <th class="border px-2 py-2">Updated at</th>
+                                <th class="border px-2 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($articles as $article)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $article->id }}</td>
-                                    <td class="border px-4 py-2">{{ $article->user_id }}</td>
-                                    <td class="border px-4 py-2">{{ $article->title }}</td>
-                                    <td class="border px-4 py-2">{{ $article->content }}</td>
-                                    <td class="border px-4 py-2">{{ $article->created_at }}</td>
-                                    <td class="border px-4 py-2">{{ $article->updated_at }}</td>
-                                    <td class="border px-4 py-2">
-                                        <div class="flex justify-center items-center">
+                                    <td class="border px-2 py-2">{{ $article->id }}</td>
+                                    <td class="border px-2 py-2">{{ $article->user->name }}</td>
+                                    <td class="border px-2 py-2">{{ $article->title }}</td>
+                                    <td class="border px-2 py-2">
+                                        @if(strlen($article->content) > 304)
+                                            {{ substr($article->content, 0, 300) . ' ...' }}
+                                        @else
+                                            {{ $article->content }}
+                                        @endif
+                                    </td>
+                                    <td class="border px-2 py-2">{{ $article->created_at }}</td>
+                                    <td class="border px-2 py-2">{{ $article->updated_at }}</td>
+                                    <td class="border px-2 py-2">
+                                        <div class="flex justify-center items-center {{ in_array($article, $own_articles) ? '' : 'pointer-events-none text-gray-300'}}">
                                             <div class="inline-block">
-                                                <a class="flex items-center" href="{{ route('backend_article.edit', $category->id) }}">
+                                                <a class="flex items-center" href="{{ route('backend_article.edit', $article->id) }}">
                                                     <span class="inline-block">
-                                                        <x-edit-icon class="h-5 w-5 text-green-500 hover:text-gray-800" />
+                                                        <x-edit-icon class="h-5 w-5 {{ in_array($article, $own_articles) ? 'text-green-500 hover:text-gray-800' : 'text-gray-300'}}" />
                                                     </span>
                                                     <span class="text-xs pl-1">Edit</span>
                                                 </a>
                                             </div>
-                                            <div class="inline-block mx-3 h-5 w-px bg-gray-500"></div>
+                                            <div class="inline-block mx-3 h-5 w-px {{ in_array($article, $own_articles) ? 'bg-gray-500' : 'bg-gray-300'}}"></div>
                                             <div class="inline-block">
-                                                <form action="{{ route('backend_article.destroy', $category->id) }}" method="POST">
+                                                <form action="{{ route('backend_article.destroy', $article->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="flex items-center" type="submit">
                                                         <span class="inline-block">
-                                                            <x-delete-icon class="h-5 w-5 text-red-500 hover:text-gray-800" />
+                                                            <x-delete-icon class="h-5 w-5 {{ in_array($article, $own_articles) ? 'text-red-500 hover:text-gray-800' : 'text-gray-300'}}" />
                                                         </span>
                                                         <span class="text-xs pl-1">Delete</span>
                                                     </button>

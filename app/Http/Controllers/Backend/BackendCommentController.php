@@ -18,7 +18,7 @@ class BackendCommentController extends Controller
     public function index()
     {
         // get all data
-        $comments = Comment::all();
+        $comments = Comment::with(['user', 'article'])->get();
 
         $viewdata = [
             'comments' => $comments
@@ -36,5 +36,10 @@ class BackendCommentController extends Controller
     public function destroy($id)
     {
         //
+        $comment = Comment::findOrFail($id);
+
+        $comment->delete();
+
+        return redirect()->route('backend_comment.destroy');
     }
 }

@@ -110,12 +110,17 @@
                         </ul>
                         <div class="pt-6">
                             <h3 class="mb-2 text-xs uppercase text-gray-500 font-medium">Functions</h3>
-                            <a class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded" href="#">
-                                <span class="inline-block mr-4">
-                                    <x-logout-icon class="text-gray-300 w-5 h-5" />
-                                </span>
-                                <span>Log Out</span>
-                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="w-full" type="submit">
+                                    <a class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded">
+                                        <span class="inline-block mr-4">
+                                            <x-logout-icon class="text-gray-300 w-5 h-5" />
+                                        </span>
+                                        <span>Log Out</span>
+                                    </a>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </nav>
@@ -242,8 +247,7 @@
                             <div class="hidden lg:block">
                                 <div class="flex items-center">
                                     <div class="mr-3">
-                                        <p class="text-sm">Admin</p>
-                                        <p class="text-sm text-gray-400">Developer</p>
+                                        <p class="text-sm">{{ Auth::user()->name }}</p>
                                     </div>
                                     <div class="mr-2">
                                         <img class="w-10 h-10 rounded-full object-cover object-right" src="http://trichdanhay.vn/wp-content/uploads/2020/09/nhung-cau-noi-hay-cua-huan-hoa-hong.png" alt="">
@@ -254,7 +258,7 @@
                     </nav>
                 </div>
 
-                <div class="m-8">
+                <div class="m-4">
                     <!-- Page Content -->
                     <main>
                         {{ $slot }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -46,10 +47,14 @@ class BackendCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        // Validate errors
+        // Validate errors (StoreCategoryRequest validated)
+        $category = Category::create([
+            'name' => $request->name
+        ]);
 
+        return redirect()->route('backend_category.index');
     }
 
     /**
@@ -88,9 +93,15 @@ class BackendCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
         //
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+
+        $category->save();
+
+        return redirect()->route('backend_category.index');
     }
 
     /**
@@ -102,5 +113,10 @@ class BackendCategoryController extends Controller
     public function destroy($id)
     {
         //
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return redirect()->route('backend_category.index');
     }
 }

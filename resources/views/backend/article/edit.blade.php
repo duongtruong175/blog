@@ -7,7 +7,7 @@
     <div class="p-4 text-3xl mr-auto">
         Edit article
     </div>
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white sm:rounded-lg">
+    <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-white sm:rounded-lg">
         <form method="POST" action="{{ route('backend_article.update', $article->id) }}">
             @csrf
             @method('PUT')
@@ -27,7 +27,7 @@
             <!-- Content -->
             <div class="mt-4">
                 <label for="content" class="block font-medium text-sm text-gray-700">Content</label>
-                <textarea rows="10" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="content" name="content" value="{{ $article->content }}" required ></textarea>
+                <textarea rows="10" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="content" name="content" required >{{ $article->content }}</textarea>
             </div>
 
             <div class="mt-8 flex-row">

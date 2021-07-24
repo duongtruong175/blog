@@ -10,24 +10,34 @@
                 <div class="container px-4 mx-auto">
                     <div class="flex flex-wrap -m-4">
                         <!-- List Articles -->
-                        @forelse([1,2,3] as $item)
+                        @forelse($articles as $article)
                             <div class="w-full lg:w-2/4 p-4">
                                 <div class="bg-white shadow rounded overflow-hidden sm:flex">
                                     <div class="w-full sm:w-4/12 flex">
                                         <div class="p-2 m-auto">
-                                            <img width="200" height="200" src="https://vantien.net/wp-content/uploads/2019/01/5826817b0ad24b8126df6762b54ae1b7.png" alt="What is Laravel">
+                                            <img width="200" height="200" src="https://vantien.net/wp-content/uploads/2019/01/5826817b0ad24b8126df6762b54ae1b7.png" alt="{{ $article->title }}">
                                         </div>
                                     </div>
                                     <div class="w-full px-4 sm:w-8/12 sm:px-2 py-4">
-                                        <div class="mt-4 text-2xl border-b">
-                                            <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', 1) }}">What is Laravel</a>
+                                        <div class="mt-4 border-b">
+                                            <a class="text-2xl text-blue-500 hover:text-blue-800" href="{{ route('articles.show', $article->id) }}">
+                                                {{ $article->title }}
+                                            </a>
+                                        </div>
+                                        <div class="text-sm mt-4 flex items-center text-center">
+                                            <div class="font-bold">
+                                                <p>Author:</p>
+                                            </div>
+                                            <div class="ml-2">
+                                                <p>{{ $article->user->name }}</p>
+                                            </div>
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center">
                                             <div class="font-bold">
                                                 <p>Categories:</p>
                                             </div>
                                             <div class="ml-2">
-                                                <p>News | Tutorial</p>
+                                                <p>{!! $article->getCategoriesLinksAttribute() !!}</p>
                                             </div>
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center">
@@ -35,36 +45,21 @@
                                                 <p>Tags:</p>
                                             </div>
                                             <div class="ml-2">
-                                                <p>Learning</p>
+                                                <p>{!! $article->getTagsLinksAttribute() !!}</p>
                                             </div>
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center text-gray-500">
                                             <x-comment-icon width="20" height="20"/>
                                             <span class="ml-1">
-                                                2
+                                                {{ count($article->comments) }}
                                             </span>
                                         </div>
                                         <div class="text-sm my-4">
                                             <p>
-                                                {{ substr('What is Laravel?
-                                                The short version, is that Laravel is a PHP MVC Framework. The long version would be, Laravel is a free and open-source PHP Framework for Web Artisans based on Symfony.
-                                                
-                                                It helps craft Web Applications following the MVC (Model View Controller) design pattern. In order for us to better understand Laravel, we will build a simple blog application with Laravel from scratch.
-                                                
-                                                Requirements: To create a Laravel application you will need a few tools installed in your computer.
-                                                
-                                                These tools include:
-                                                
-                                                PHP >= 7.3.
-                                                Database (MySql).
-                                                A localhost Web Server – In our case we’ll use WAMP (for Windows), LAMP (for Linux), or MAMP (for MacOs). This localhost webserver comes installed with latest PHP and MySQL database so you will not need to install them manually. To install either MAMP, LAMP, or WAMP go to http://ampps.com/downloads and choose the software your platform.
-                                                Composer – This is a dependency management software for PHP. To install the composer visit https://getcomposer.org/ and download it there for your platform.
-                                                Node.js – This is a free and open source JavaScript runtime environment that executes JavaScript outside of the browser. We will not write any Node.js code but it will be used in the background by Laravel to streamline our development.
-                                                Code editor – A code editor will be required. We recommend to use Visual Studio Code: It is free.
-                                                A browser – Google Chrome, Edge, Safari, or Mozilla Firefox will do just fine.
-                                                Background knowledge of the PHP Programming Language.
-                                                With our machine setup complete, it’s time to start developing.', 0, 400) }}
-                                                ... <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', 1) }}">Read full article</a>
+                                                {{ strlen($article->content) > 400 ? substr($article->content, 0, 400) . ' ...' : $article->content }}
+                                                <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', $article->id) }}">
+                                                    Read full article
+                                                </a>
                                             </p>
                                         </div>
                                     </div>
@@ -77,7 +72,7 @@
                         @endforelse
                     </div>
 
-                    @if([1,2,3])
+                    @if(!empty($articles))
                         <!-- Paging Bar -->
                         <div class="flex flex-wrap justify-between pt-6">
                             <div class="w-full lg:w-auto mb-4 lg:mb-0 flex items-center">
@@ -145,23 +140,42 @@
                         Categories
                     </div>
                     <div class="text-sm">
-                        <ul class="pl-10 py-6">
-                            <li><a href="#">News</a></li>
-                            <li class="pt-3"><a href="#">Opinion</a></li>
-                            <li class="pt-3"><a href="#">Tutorial</a></li>
-                            <li class="pt-3"><a href="#">Review</a></li>
+                        <ul class="pl-10 pt-3 pb-6">
+                            @forelse($categories as $category)
+                                <li class="pt-3">
+                                    <div class="transition duration-300 transform text-blue-500 hover:text-blue-900 hover:scale-105" >
+                                        <a href="#">
+                                            {{ $category->name }}
+                                        </a>
+                                    </div>
+                                </li>
+                            @empty
+                                <li class="pt-3">
+                                    No categories yet.
+                                </li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>
                 <div class="shadow mt-6">
                     <div class="text-xl font-bold p-4 bg-gray-100">
-                        Tags
+                        Top 5 tags
                     </div>
                     <div class="text-sm">
-                        <ul class="pl-10 py-6">
-                            <li><a href="#">Learning</a></li>
-                            <li class="pt-3"><a href="#">For Fun</a></li>
-                            <li class="pt-3"><a href="#">Machine learning</a></li>
+                        <ul class="pl-10 pt-3 pb-6">
+                            @forelse($top_tags as $tag)
+                                <li class="pt-3">
+                                    <div class="transition duration-300 transform text-blue-500 hover:text-blue-800 hover:scale-105" >
+                                        <a href="#">
+                                            {{ $tag->name }}
+                                        </a>
+                                    </div>
+                                </li>
+                            @empty
+                                <li class="pt-3">
+                                    No tags yet.
+                                </li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>

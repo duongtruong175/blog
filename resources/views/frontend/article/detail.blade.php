@@ -9,9 +9,9 @@
             <div class="py-8">
                 <div class="container px-24 mx-auto">
                     <!-- Article detail -->
-                    <div class="bg-white shadow rounded">
-                        <div class="text-3xl font-bold p-4 bg-gray-100">
-                            What is Laravel
+                    <div class="bg-white">
+                        <div class="text-2xl font-bold p-4 bg-gray-100">
+                            {{ $article->title }}
                         </div>
                         <div class="w-full">
                             <div class="pt-12 pl-4 pb-4">
@@ -21,10 +21,18 @@
                         <div class="w-full p-4 text-base">
                             <div class="mt-4 flex items-center text-center">
                                 <div class="font-bold">
+                                    <p>Author:</p>
+                                </div>
+                                <div class="ml-2">
+                                    <p>{{ $article->user->name }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-center">
+                                <div class="font-bold">
                                     <p>Categories:</p>
                                 </div>
                                 <div class="ml-2">
-                                    <p>News | Tutorial</p>
+                                    <p>{!! $article->getCategoriesLinksAttribute() !!}</p>
                                 </div>
                             </div>
                             <div class="mt-4 flex items-center text-center">
@@ -32,31 +40,86 @@
                                     <p>Tags:</p>
                                 </div>
                                 <div class="ml-2">
-                                    <p>Learning</p>
+                                    <p>{!! $article->getTagsLinksAttribute() !!}</p>
                                 </div>
                             </div>
                             <div class="my-4">
                                 <p>
-                                    {!! nl2br('What is Laravel?
-                                    The short version, is that Laravel is a PHP MVC Framework. The long version would be, Laravel is a free and open-source PHP Framework for Web Artisans based on Symfony.
-                                    
-                                    It helps craft Web Applications following the MVC (Model View Controller) design pattern. In order for us to better understand Laravel, we will build a simple blog application with Laravel from scratch.
-                                    
-                                    Requirements: To create a Laravel application you will need a few tools installed in your computer.
-                                    
-                                    These tools include:
-                                    
-                                    PHP >= 7.3.
-                                    Database (MySql).
-                                    A localhost Web Server – In our case we’ll use WAMP (for Windows), LAMP (for Linux), or MAMP (for MacOs). This localhost webserver comes installed with latest PHP and MySQL database so you will not need to install them manually. To install either MAMP, LAMP, or WAMP go to http://ampps.com/downloads and choose the software your platform.
-                                    Composer – This is a dependency management software for PHP. To install the composer visit https://getcomposer.org/ and download it there for your platform.
-                                    Node.js – This is a free and open source JavaScript runtime environment that executes JavaScript outside of the browser. We will not write any Node.js code but it will be used in the background by Laravel to streamline our development.
-                                    Code editor – A code editor will be required. We recommend to use Visual Studio Code: It is free.
-                                    A browser – Google Chrome, Edge, Safari, or Mozilla Firefox will do just fine.
-                                    Background knowledge of the PHP Programming Language.
-                                    With our machine setup complete, it’s time to start developing.') !!}
+                                    {!! nl2br($article->content) !!}
                                 </p>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Comment Container -->
+                    <div class="bg-white">
+                        <!-- Input comment -->
+                        <div class="mt-12">
+                            <div class="font-bold text-3xl mb-6">
+                                Comments
+                            </div>
+                            <div class="mb-6 pt-2">
+                                @auth
+                                    <form id="form-add-comment">
+                                        @csrf
+                            
+                                        <!-- Article ID -->
+                                        <input type="hidden" id="article_id" name="article_id" value="{{ $article->id }}" required />
+                                        
+                                        <!-- User ID -->
+                                        <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}" required />
+        
+                                        <!-- Content -->
+                                        <div class="relative w-full clear-both">
+                                            <textarea class="py-4 pl-4 pr-20 sm:pr-28 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" style="min-height: 6.725rem" id="content" name="content" required placeholder="Enter a content comment">{{ old('content') }}</textarea>
+                                            <button type="submit" id="btn-add-comment" class="w-8 h-8 absolute border-none top-10 right-10 bg-cover" style="background-image: url('{{ asset('img/comment_textarea.png') }}'); background-color: inherit;"></button>
+                                        </div>
+                            
+                                    </form>
+                                    <div class="text-xs text-red-900">
+                                        <ul id="ul-errors">
+                                        </ul>
+                                    </div>
+                                @else
+                                    <div class="w-full">
+                                        <div class="border rounded p-2 flex">
+                                            <a class="mx-auto text-center flex" href="{{ route('login') }}">
+                                                <x-login-icon class="w-6 h-6 text-gray-500" />
+                                                <span class="text-sm ml-2">Login to comment!</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endauth
+                            </div>
+                        </div>
+                        <!-- List comments -->
+                        <div id="ul-comments" class="mt-6">
+                            @forelse ($article->comments as $comment)
+                                <div class="mt-4 flex w-full">
+                                    <div class="mr-2 pt-2 pl-2">
+                                        <img class="w-8 h-8 rounded-full object-cover object-right" src="http://trichdanhay.vn/wp-content/uploads/2020/09/nhung-cau-noi-hay-cua-huan-hoa-hong.png" alt="">
+                                    </div>
+                                    <div class="mx-2 bg-gray-100 w-full p-4 rounded">
+                                        <div class="text-sm">
+                                            <span class="font-bold">{{ $comment->user->name }}</span>
+                                            <!-- Display xx minutes/hours/days/months/years ago-->
+                                            <span class="ml-8 text-gray-400">{{ $comment->time_elapsed_string($comment->created_at) }}</span>
+                                        </div>
+                                        <div class="pt-4">
+                                            {{ $comment->content }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div id="ul-comments-empty" class="mt-4 w-full">
+                                    <div class="border rounded p-2 flex">
+                                        <div class="mx-auto text-center flex">
+                                            <x-comment-icon class="w-6 h-6 text-gray-500" />
+                                            <span class="text-sm ml-2">No comments yet.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>

@@ -19,42 +19,42 @@
         <div class="py-8">
             <div class="container px-4 mx-auto">
                 <!-- Data table -->
-                <div class="px-8 py-5">
-                    <table class="table-auto w-full text-center">
+                <div class="px-4 py-4 overflow-x-auto">
+                    <table class="table-auto w-full text-center text-sm">
                         <thead>
                             <tr>
-                                <th class="border px-4 py-2">ID</th>
-                                <th class="border px-4 py-2">Name</th>
-                                <th class="border px-4 py-2">Created At</th>
-                                <th class="border px-4 py-2">Updated At</th>
-                                <th class="border px-4 py-2">Action</th>
+                                <th class="border px-2 py-2">ID</th>
+                                <th class="border px-2 py-2">Name</th>
+                                <th class="border px-2 py-2">Created at</th>
+                                <th class="border px-2 py-2">Updated at</th>
+                                <th class="border px-2 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($roles as $role)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $role->id }}</td>
-                                    <td class="border px-4 py-2">{{ $role->name }}</td>
-                                    <td class="border px-4 py-2">{{ $role->created_at }}</td>
-                                    <td class="border px-4 py-2">{{ $role->updated_at }}</td>
-                                    <td class="border px-4 py-2">
-                                        <div class="flex justify-center items-center">
+                                    <td class="border px-2 py-2">{{ $role->id }}</td>
+                                    <td class="border px-2 py-2">{{ $role->name }}</td>
+                                    <td class="border px-2 py-2">{{ $role->created_at }}</td>
+                                    <td class="border px-2 py-2">{{ $role->updated_at }}</td>
+                                    <td class="border px-2 py-2">
+                                        <div class="flex justify-center items-center {{ $role->name === 'admin' ? 'pointer-events-none text-gray-300' : ''}}">
                                             <div class="inline-block">
                                                 <a class="flex items-center" href="{{ route('backend_role.edit', $role->id) }}">
                                                     <span class="inline-block">
-                                                        <x-edit-icon class="h-5 w-5 text-green-500 hover:text-gray-800" />
+                                                        <x-edit-icon class="h-5 w-5 {{ $role->name === 'admin' ? 'text-gray-300' : 'text-green-500 hover:text-gray-800'}}" />
                                                     </span>
                                                     <span class="text-xs pl-1">Edit</span>
                                                 </a>
                                             </div>
-                                            <div class="inline-block mx-3 h-5 w-px bg-gray-500"></div>
+                                            <div class="inline-block mx-3 h-5 w-px {{ $role->name === 'admin' ? 'bg-gray-300' : 'bg-gray-500'}}"></div>
                                             <div class="inline-block">
                                                 <form action="{{ route('backend_role.destroy', $role->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="flex items-center" type="submit">
                                                         <span class="inline-block">
-                                                            <x-delete-icon class="h-5 w-5 text-red-500 hover:text-gray-800" />
+                                                            <x-delete-icon class="h-5 w-5 {{ $role->name === 'admin' ? 'text-gray-300' : 'text-red-500 hover:text-gray-800'}}" />
                                                         </span>
                                                         <span class="text-xs pl-1">Delete</span>
                                                     </button>
