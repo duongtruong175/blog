@@ -94,7 +94,7 @@
                         </div>
                         <!-- List comments -->
                         <div id="ul-comments" class="mt-6">
-                            @forelse ($article->comments as $comment)
+                            @forelse ($comments as $comment)
                                 <div class="mt-4 flex w-full">
                                     <div class="mr-2 pt-2 pl-2">
                                         <img class="w-8 h-8 rounded-full object-cover object-right" src="http://trichdanhay.vn/wp-content/uploads/2020/09/nhung-cau-noi-hay-cua-huan-hoa-hong.png" alt="">

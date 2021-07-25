@@ -21,19 +21,15 @@ class BackendArticleController extends Controller
     public function index()
     {
         // get all articles
-        $articles = Article::with('user')->get();
+        $articles = Article::with('user')->paginate(5);
 
         // get articles owned by User
-        $own_articles = array();
-        foreach($articles as $article) {
-            if(Auth::id() === $article->user_id) {
-                array_push($own_articles, $article);
-            }
-        }
+        $own_articles = Article::where('user_id', Auth::id())
+                                ->get();
         
         $viewdata = [
             'articles' => $articles,
-            'own_articles' => $own_articles,
+            'own_articles' => $own_articles
         ];
 
         return view($this->folder . 'index', $viewdata);
@@ -132,6 +128,9 @@ class BackendArticleController extends Controller
         //
         $article = Article::findOrFail($id);
         
+        // Detach all relationships
+        $article->categories->detach();
+        $article->tags->detach();
         $article->delete();
 
         return redirect()->route('backend_article.index');

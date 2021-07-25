@@ -17,16 +17,24 @@ class AdminPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        //check admin permission
+        // check login
         if (Auth::check()) {
+            //check admin permission
+            $is_admin = 0;
             foreach(Auth::user()->roles as $role) {
                 if($role->name === 'admin') {
-                    return $next($request);
+                    $is_admin = 1;
+                    break;
                 }
+            }
+            if ($is_admin === 1) {
+                return $next($request);
+            } else {
+                // if don't have permission
+                abort(403);
             }
         }
         
-        // if don't have permission
-        abort(403);
+        return redirect()->route('backend.login');
     }
 }

@@ -20,7 +20,7 @@ class BackendTagController extends Controller
     public function index()
     {
         // get all data
-        $tags = Tag::all();
+        $tags = Tag::paginate(5);
 
         $viewdata = [
             'tags' => $tags
@@ -117,6 +117,8 @@ class BackendTagController extends Controller
         //
         $tag = Tag::findOrFail($id);
 
+        // Detach all relationships
+        $tag->articles->detach();
         $tag->delete();
 
         return redirect()->route('backend_tag.index');

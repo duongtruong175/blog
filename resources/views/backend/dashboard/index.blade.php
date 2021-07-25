@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="hidden sm:block absolute top-1/3 right-4">
-                    <x-user-icon class="w-8 h-8" style="color: rgba(0, 0, 0, 0.15)" />
+                    <x-user-icon class="w-8 h-8 transition duration-300 transform hover:scale-125" style="color: rgba(0, 0, 0, 0.15)" />
                 </div>
                 <a class="flex justify-center cursor-pointer text-center p-1 w-full" style="background-color: rgba(0,0,0,.1)">
                     <span class="text-white text-sm mr-1">More info</span>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="hidden sm:block absolute top-1/3 right-4">
-                    <x-article-icon class="w-8 h-8" style="color: rgba(0, 0, 0, 0.15)" />
+                    <x-article-icon class="w-8 h-8 transition duration-300 transform hover:scale-125" style="color: rgba(0, 0, 0, 0.15)" />
                 </div>
                 <a class="flex justify-center cursor-pointer text-center p-1 w-full" style="background-color: rgba(0,0,0,.1)">
                     <span class="text-white text-sm mr-1">More info</span>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="hidden sm:block absolute top-1/3 right-4">
-                    <x-category-icon class="w-8 h-8" style="color: rgba(0, 0, 0, 0.15)" />
+                    <x-category-icon class="w-8 h-8 transition duration-300 transform hover:scale-125" style="color: rgba(0, 0, 0, 0.15)" />
                 </div>
                 <a class="flex justify-center cursor-pointer text-center p-1 w-full" style="background-color: rgba(0,0,0,.1)">
                     <span class="text-white text-sm mr-1">More info</span>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="hidden sm:block absolute top-1/3 right-4">
-                    <x-tag-icon class="w-8 h-8" style="color: rgba(0, 0, 0, 0.15)" />
+                    <x-tag-icon class="w-8 h-8 transition duration-300 transform hover:scale-125" style="color: rgba(0, 0, 0, 0.15)" />
                 </div>
                 <a class="flex justify-center cursor-pointer text-center p-1 w-full" style="background-color: rgba(0,0,0,.1)">
                     <span class="text-white text-sm mr-1">More info</span>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="hidden sm:block absolute top-1/3 right-4">
-                    <x-comment-icon class="w-8 h-8" style="color: rgba(0, 0, 0, 0.15)" />
+                    <x-comment-icon class="w-8 h-8 transition duration-300 transform hover:scale-125" style="color: rgba(0, 0, 0, 0.15)" />
                 </div>
                 <a class="flex justify-center cursor-pointer text-center p-1 w-full" style="background-color: rgba(0,0,0,.1)">
                     <span class="text-white text-sm mr-1">More info</span>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="hidden sm:block absolute top-1/3 right-4">
-                    <x-role-icon class="w-8 h-8" style="color: rgba(0, 0, 0, 0.15)" />
+                    <x-role-icon class="w-8 h-8 transition duration-300 transform hover:scale-125" style="color: rgba(0, 0, 0, 0.15)" />
                 </div>
                 <a class="flex justify-center cursor-pointer text-center p-1 w-full" style="background-color: rgba(0,0,0,.1)">
                     <span class="text-white text-sm mr-1">More info</span>

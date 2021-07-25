@@ -141,7 +141,7 @@
                                 </a>
                                 @if(request()->routeIs('backend_dashboard.*'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>
                                     <a class="flex items-center text-sm hover:text-gray-800" href="{{ route('backend_dashboard.index') }}">
                                         <span class="inline-block mr-2">
@@ -151,7 +151,7 @@
                                     </a>
                                 @elseif(request()->routeIs('backend_user.*'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>
                                     <a class="flex items-center text-sm hover:text-gray-800" href="{{ route('backend_user.index') }}">
                                         <span class="inline-block mr-2">
@@ -161,7 +161,7 @@
                                     </a>
                                 @elseif(request()->routeIs('backend_role.*'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>    
                                     <a class="flex items-center text-sm hover:text-gray-800" href="{{ route('backend_role.index') }}">
                                         <span class="inline-block mr-2">
@@ -171,7 +171,7 @@
                                     </a>
                                 @elseif(request()->routeIs('backend_article.*'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>    
                                     <a class="flex items-center text-sm hover:text-gray-800" href="{{ route('backend_article.index') }}">
                                         <span class="inline-block mr-2">
@@ -181,7 +181,7 @@
                                     </a>
                                 @elseif(request()->routeIs('backend_category.*'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>    
                                     <a class="flex items-center text-sm hover:text-gray-800" href="{{ route('backend_category.index') }}">
                                         <span class="inline-block mr-2">
@@ -191,7 +191,7 @@
                                     </a>
                                 @elseif(request()->routeIs('backend_tag.*'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>    
                                     <a class="flex items-center text-sm hover:text-gray-800" href="{{ route('backend_tag.index') }}">
                                         <span class="inline-block mr-2">
@@ -201,7 +201,7 @@
                                     </a>
                                 @elseif(request()->routeIs('backend_comment.*'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>    
                                     <a class="flex items-center text-sm hover:text-gray-800" href="{{ route('backend_comment.index') }}">
                                         <span class="inline-block mr-2">
@@ -213,14 +213,14 @@
                                 @endif
                                 @if(request()->routeIs('*.create'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>  
                                     <span class="inline-block mr-2">
                                         Create
                                     </span>
                                 @elseif(request()->routeIs('*.edit'))
                                     <span class="inline-block mx-3">
-                                        <x-arrow-right-icon class="text-indigo-500" width="6" height="10" />
+                                        <x-arrow-right-icon class="text-indigo-500 w-4 h-4" />
                                     </span>  
                                     <span class="inline-block mr-2">
                                         Edit

@@ -55,7 +55,7 @@
                     if ($("#ul-comments-empty")) {
                         $("#ul-comments-empty").remove();
                     }
-                    $("#ul-comments").append(div_comment);
+                    $("#ul-comments").prepend(div_comment);
                 },
                 error: function (response) {
                     let res = JSON.parse(response.responseText);

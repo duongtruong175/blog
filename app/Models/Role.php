@@ -20,4 +20,12 @@ class Role extends Model
         'name'
     ];
 
+    /**
+     * Get the uses that belong to the role.
+     * many to many relationships => role_user table
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

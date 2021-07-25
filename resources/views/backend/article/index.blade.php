@@ -18,6 +18,20 @@
     <div class="shadow mx-0">
         <div class="py-8">
             <div class="container px-4 mx-auto">
+                <!-- Paginate -->
+                <div class="flex justify-end pb-4">
+                    <div class="w-auto mr-4 flex items-center">
+                        <p class="mr-3 text-sm">{{ __('Rows')}}</p>
+                        <div class="flex bg-white border border-gray-100 rounded">
+                            <select class="text-sm border-0 w-full" name="paginate" id="paginate">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Data table -->
                 <div class="px-4 py-4 overflow-x-auto">
                     <table class="table-auto w-full text-center text-sm">
@@ -39,32 +53,28 @@
                                     <td class="border px-2 py-2">{{ $article->user->name }}</td>
                                     <td class="border px-2 py-2">{{ $article->title }}</td>
                                     <td class="border px-2 py-2">
-                                        @if(strlen($article->content) > 304)
-                                            {{ substr($article->content, 0, 300) . ' ...' }}
-                                        @else
-                                            {{ $article->content }}
-                                        @endif
+                                        {{ strlen($article->content) > 300 ? substr($article->content, 0, 300) . ' ...' :  $article->content }}
                                     </td>
                                     <td class="border px-2 py-2">{{ $article->created_at }}</td>
                                     <td class="border px-2 py-2">{{ $article->updated_at }}</td>
                                     <td class="border px-2 py-2">
-                                        <div class="flex justify-center items-center {{ in_array($article, $own_articles) ? '' : 'pointer-events-none text-gray-300'}}">
+                                        <div class="flex justify-center items-center {{ $own_articles->contains($article) ? '' : 'pointer-events-none text-gray-300'}}">
                                             <div class="inline-block">
                                                 <a class="flex items-center" href="{{ route('backend_article.edit', $article->id) }}">
                                                     <span class="inline-block">
-                                                        <x-edit-icon class="h-5 w-5 {{ in_array($article, $own_articles) ? 'text-green-500 hover:text-gray-800' : 'text-gray-300'}}" />
+                                                        <x-edit-icon class="h-5 w-5 {{ $own_articles->contains($article) ? 'text-green-500 hover:text-gray-800' : 'text-gray-300'}}" />
                                                     </span>
                                                     <span class="text-xs pl-1">Edit</span>
                                                 </a>
                                             </div>
-                                            <div class="inline-block mx-3 h-5 w-px {{ in_array($article, $own_articles) ? 'bg-gray-500' : 'bg-gray-300'}}"></div>
+                                            <div class="inline-block mx-3 h-5 w-px {{ $own_articles->contains($article) ? 'bg-gray-500' : 'bg-gray-300'}}"></div>
                                             <div class="inline-block">
                                                 <form action="{{ route('backend_article.destroy', $article->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="flex items-center" type="submit">
                                                         <span class="inline-block">
-                                                            <x-delete-icon class="h-5 w-5 {{ in_array($article, $own_articles) ? 'text-red-500 hover:text-gray-800' : 'text-gray-300'}}" />
+                                                            <x-delete-icon class="h-5 w-5 {{ $own_articles->contains($article) ? 'text-red-500 hover:text-gray-800' : 'text-gray-300'}}" />
                                                         </span>
                                                         <span class="text-xs pl-1">Delete</span>
                                                     </button>
@@ -83,47 +93,8 @@
                 </div>
                 
                 <!-- Paging Bar -->
-                <div class="flex flex-wrap justify-between pt-6">
-                    <div class="w-full lg:w-auto mb-4 lg:mb-0 flex items-center">
-                        <p class="mr-3 text-xs text-gray-400">Show</p>
-                        <div class="flex bg-white border border-gray-100 rounded">
-                            <select class="text-xs border-0 w-full text-gray-500" name="" id="">
-                                <option value="1">10</option>
-                                <option value="2">20</option>
-                                <option value="3">50</option>
-                            </select>
-                        </div>
-                        <p class="text-xs ml-3 text-gray-400">of 1200</p>
-                    </div>
-                    <div class="w-full lg:w-auto flex items-center justify-center">
-                        <a class="inline-flex mr-3 items-center justify-center w-8 h-8 text-xs text-gray-500 border border-gray-300 bg-white hover:bg-indigo-50 rounded" href="#">
-                            <x-arrow-left-icon width="6" height="8" />
-                        </a>
-                        <x-link-page-number :href="'#'" :active="$articles">
-                            1
-                        </x-link-page-number>
-                        <x-link-page-number :href="'#'" :active="[]">
-                            2
-                        </x-link-page-number>
-                        <span class="inline-block mr-3">
-                            <x-etc-icon class="h-3 w-3 text-gray-200" />
-                        </span>
-                        <x-link-page-number :href="'#'" :active="[]">
-                            5
-                        </x-link-page-number>
-                        <x-link-page-number :href="'#'" :active="[]">
-                            6
-                        </x-link-page-number>
-                        <span class="inline-block mr-3">
-                            <x-etc-icon class="h-3 w-3 text-gray-200" />
-                        </span>
-                        <x-link-page-number :href="'#'" :active="[]">
-                            8
-                        </x-link-page-number>
-                        <a class="inline-flex items-center justify-center w-8 h-8 text-xs text-gray-500 border border-gray-300 bg-white hover:bg-indigo-50 rounded" href="#">
-                            <x-arrow-right-icon width="6" height="8" />
-                        </a>
-                    </div>
+                <div class="pt-4">
+                    {{ $articles->links() }}
                 </div>
             </div>
         </div>

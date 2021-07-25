@@ -20,7 +20,7 @@ class BackendRoleController extends Controller
     public function index()
     {
         // get all data
-        $roles = Role::all();
+        $roles = Role::paginate(5);
 
         $viewdata = [
             'roles' => $roles
@@ -114,6 +114,8 @@ class BackendRoleController extends Controller
         //
         $role = Role::findOrFail($id);
         
+        // Detach all relationships
+        $role->users->detach();
         $role->delete();
 
         return redirect()->route('backend_role.index');

@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Login
+Route::get('/admin', BackendHomeController::class)
+                    ->name('backend.home');
+
+
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     // Home
     Route::get('/', BackendHomeController::class)
