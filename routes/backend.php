@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\BackendArticleController;
+use App\Http\Controllers\Backend\BackendAuthenticationController;
 use App\Http\Controllers\Backend\BackendCategoryController;
 use App\Http\Controllers\Backend\BackendCommentController;
 use App\Http\Controllers\Backend\BackendDashboardController;
@@ -19,9 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Login
-Route::get('/admin', BackendHomeController::class)
-                    ->name('backend.home');
+// Authentication
+Route::get('/admin/login', [BackendAuthenticationController::class, 'index'])
+                    ->name('backend_auth.index');
+Route::post('/admin/login', [BackendAuthenticationController::class, 'login'])
+                    ->name('backend_auth.login');
+Route::post('/admin/logout', [BackendAuthenticationController::class, 'logout'])
+                    ->name('backend_auth.logout');
 
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {

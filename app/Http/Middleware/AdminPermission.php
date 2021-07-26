@@ -35,6 +35,6 @@ class AdminPermission
             }
         }
         
-        return redirect()->route('backend.login');
+        return redirect()->route('backend_auth.index');
     }
 }

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $title ? $title : 'Admin' }}</title>
+        <title>{{ $title ? 'Admin | ' . $title : 'Admin' }}</title>
 
         @include('layouts.backend_header')
     </head>
@@ -18,7 +18,7 @@
                         <a class="text-2xl font-semibold" href="{{ route('backend.home') }}">
                             <x-application-logo class="block h-8 w-auto fill-current text-gray-600" />
                         </a>
-                        <span class="ml-4 font-medium text-2xl">Blog</span>
+                        <span class="ml-2 font-medium text-2xl">Admin Blog</span>
                     </div>
                     <button class="navbar-burger flex items-center rounded focus:outline-none">
                         <svg class="text-white bg-indigo-500 hover:bg-indigo-600 block h-8 w-8 p-2 rounded" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -38,7 +38,7 @@
                             <a class="text-xl font-semibold" href="{{ route('backend.home') }}">
                                 <x-application-logo class="block h-8 w-auto fill-current text-gray-600" />
                             </a>
-                            <span class="ml-4 font-medium text-2xl">Blog</span>
+                            <span class="ml-2 font-medium text-2xl">Admin Blog</span>
                         </div>
                     </div>
                     <div class="px-4 pb-6">
@@ -110,7 +110,7 @@
                         </ul>
                         <div class="pt-6">
                             <h3 class="mb-2 text-xs uppercase text-gray-500 font-medium">Functions</h3>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('backend_auth.logout') }}">
                                 @csrf
                                 <button class="w-full" type="submit">
                                     <a class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded">

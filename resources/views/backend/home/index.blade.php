@@ -1,6 +1,6 @@
 <x-backend_app-layout>
     <x-slot name="title">
-        Admin
+        Home
     </x-slot>
     
     <div class="w-full">

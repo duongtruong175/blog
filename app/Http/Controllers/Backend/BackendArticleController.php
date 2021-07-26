@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -132,6 +133,8 @@ class BackendArticleController extends Controller
         $article->categories->detach();
         $article->tags->detach();
         $article->delete();
+        Comment::where('article_id', $article->id)
+                ->delete();
 
         return redirect()->route('backend_article.index');
     }
