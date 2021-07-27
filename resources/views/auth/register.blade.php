@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Register
+        {{ __('Register') }}
     </x-slot>
 
     <x-auth-card>

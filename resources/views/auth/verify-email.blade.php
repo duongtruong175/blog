@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Verify Email
+        {{ __('Verify Email') }}
     </x-slot>
 
     <x-auth-card>

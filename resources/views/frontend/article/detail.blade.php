@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Article detail
+        {{ __('Article detail') }}
     </x-slot>
 
     <div class="mx-8 px-2 py-4 lg:flex">
@@ -15,13 +15,13 @@
                         </div>
                         <div class="w-full">
                             <div class="pt-12 pl-4 pb-4">
-                                <img width="200" height="200" src="https://vantien.net/wp-content/uploads/2019/01/5826817b0ad24b8126df6762b54ae1b7.png" alt="What is Laravel">
+                                <img width="200" height="200" src="https://vantien.net/wp-content/uploads/2019/01/5826817b0ad24b8126df6762b54ae1b7.png" alt="{{ $article->title }}">
                             </div>
                         </div>
                         <div class="w-full p-4 text-base">
                             <div class="mt-4 flex items-center text-center">
                                 <div class="font-bold">
-                                    <p>Author:</p>
+                                    <p>{{ __('Author') }}:</p>
                                 </div>
                                 <div class="ml-2">
                                     <p>{{ $article->user->name }}</p>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="mt-4 flex items-center text-center">
                                 <div class="font-bold">
-                                    <p>Categories:</p>
+                                    <p>{{ __('Categories') }}:</p>
                                 </div>
                                 <div class="ml-2">
                                     <p>{!! $article->getCategoriesLinksAttribute() !!}</p>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="mt-4 flex items-center text-center">
                                 <div class="font-bold">
-                                    <p>Tags:</p>
+                                    <p>{{ __('Tags') }}:</p>
                                 </div>
                                 <div class="ml-2">
                                     <p>{!! $article->getTagsLinksAttribute() !!}</p>
@@ -56,7 +56,7 @@
                         <!-- Input comment -->
                         <div class="mt-12">
                             <div class="font-bold text-3xl mb-6">
-                                Comments
+                                {{ __('Comments') }}
                             </div>
                             <div class="mb-6 pt-2">
                                 @auth
@@ -71,7 +71,7 @@
         
                                         <!-- Content -->
                                         <div class="relative w-full clear-both">
-                                            <textarea class="py-4 pl-4 pr-20 sm:pr-28 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" style="min-height: 6.725rem" id="content" name="content" required placeholder="Enter a content comment">{{ old('content') }}</textarea>
+                                            <textarea class="py-4 pl-4 pr-20 sm:pr-28 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" style="min-height: 6.725rem" id="content" name="content" required placeholder="{{ __('Enter a content comment') }}">{{ old('content') }}</textarea>
                                             <button type="submit" id="btn-add-comment" class="w-8 h-8 absolute border-none top-10 right-10 bg-cover" style="background-image: url('{{ asset('img/comment_textarea.png') }}'); background-color: inherit;"></button>
                                         </div>
                             
@@ -85,7 +85,7 @@
                                         <div class="border rounded p-2 flex">
                                             <a class="mx-auto text-center flex" href="{{ route('login') }}">
                                                 <x-login-icon class="w-6 h-6 text-gray-500" />
-                                                <span class="text-sm ml-2">Login to comment!</span>
+                                                <span class="text-sm ml-2">{{ __('Login to comment') }}!</span>
                                             </a>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                     <div class="border rounded p-2 flex">
                                         <div class="mx-auto text-center flex">
                                             <x-comment-icon class="w-6 h-6 text-gray-500" />
-                                            <span class="text-sm ml-2">No comments yet.</span>
+                                            <span class="text-sm ml-2">{{ __('No comments yet') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -130,8 +130,8 @@
         <div class="hidden lg:block lg:w-1/4 z-100">
             <!-- Table of contents -->
             <div class="py-8 mx-3">
-                <div class="shadow text-xl font-bold p-4 bg-gray-100">
-                    Table of contents
+                <div class="text-xl font-bold p-4 border-b">
+                    {{ __("Table of contents") }}
                 </div>
                 <div class="pl-8 py-4">
                     <ul>

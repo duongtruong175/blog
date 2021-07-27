@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Articles
+        {{ __('Article list') }}
     </x-slot>
 
     <div class="mx-4 px-2 py-4 lg:flex">
@@ -26,7 +26,7 @@
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center">
                                             <div class="font-bold">
-                                                <p>Author:</p>
+                                                <p>{{ __('Author') }}:</p>
                                             </div>
                                             <div class="ml-2">
                                                 <p>{{ $article->user->name }}</p>
@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center">
                                             <div class="font-bold">
-                                                <p>Categories:</p>
+                                                <p>{{ __('Categories') }}:</p>
                                             </div>
                                             <div class="ml-2">
                                                 <p>{!! $article->getCategoriesLinksAttribute() !!}</p>
@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center">
                                             <div class="font-bold">
-                                                <p>Tags:</p>
+                                                <p>{{ __('Tags') }}:</p>
                                             </div>
                                             <div class="ml-2">
                                                 <p>{!! $article->getTagsLinksAttribute() !!}</p>
@@ -58,7 +58,7 @@
                                             <p>
                                                 {{ strlen($article->content) > 400 ? substr($article->content, 0, 400) . ' ... ' : $article->content }}
                                                 <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', $article->id) }}">
-                                                    Read full article
+                                                    {{ __('Read full article') }}
                                                 </a>
                                             </p>
                                         </div>
@@ -67,7 +67,7 @@
                             </div>
                         @empty
                             <div class="text-xl pl-56 pt-8">
-                                No articles yet.
+                                {{ __('No articles yet') }}
                             </div>
                         @endforelse
                     </div>
@@ -87,18 +87,18 @@
             <div class="py-8 mx-3">
                 <div class="shadow">
                     <div class="text-xl font-bold p-4 bg-gray-100">
-                        Search by keyword
+                        {{ __('Search by keyword') }}
                     </div>
                     <div class="pl-4 py-4">
                         <form action="#" method="GET">
-                            <input class="text-xs w-7/12 p-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="keyword" name="keyword" placeholder="Enter a keyword" required />
-                            <button class="text-xs ml-2 text-white p-2 bg-blue-500 hover:bg-blue-800 rounded">Search</button>
+                            <input class="text-xs w-7/12 p-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="keyword" name="keyword" placeholder="{{ __('Enter a keyword') }}" required />
+                            <button class="text-xs ml-2 text-white p-2 bg-blue-500 hover:bg-blue-800 rounded">{{ __('Search') }}</button>
                         </form>
                     </div>
                 </div>
                 <div class="shadow mt-6">
                     <div class="text-xl font-bold p-4 bg-gray-100">
-                        Categories
+                        {{ __('Categories') }}
                     </div>
                     <div class="text-sm">
                         <ul class="pl-10 pt-3 pb-6">
@@ -112,7 +112,7 @@
                                 </li>
                             @empty
                                 <li class="pt-3">
-                                    No categories yet.
+                                    {{ __('No categories yet') }}
                                 </li>
                             @endforelse
                         </ul>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="shadow mt-6">
                     <div class="text-xl font-bold p-4 bg-gray-100">
-                        Top 5 tags
+                        {{ __('Top :number tags', ['number' => 5]) }}
                     </div>
                     <div class="text-sm">
                         <ul class="pl-10 pt-3 pb-6">
@@ -134,7 +134,7 @@
                                 </li>
                             @empty
                                 <li class="pt-3">
-                                    No tags yet.
+                                    {{ __('No tags yet') }}
                                 </li>
                             @endforelse
                         </ul>

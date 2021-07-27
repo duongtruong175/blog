@@ -31,7 +31,7 @@ class AdminPermission
                 return $next($request);
             } else {
                 // if don't have permission
-                abort(403);
+                return abort(403);
             }
         }
         

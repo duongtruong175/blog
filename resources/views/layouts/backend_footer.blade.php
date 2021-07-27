@@ -6,6 +6,10 @@
 </footer>
 
 <!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
+
+<!-- Scripts -->
 <script>
     // Burger menus
     document.addEventListener('DOMContentLoaded', function() {

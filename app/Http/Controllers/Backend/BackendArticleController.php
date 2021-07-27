@@ -97,6 +97,7 @@ class BackendArticleController extends Controller
     
             return view($this->folder . 'edit', $viewdata);
         }
+        return abort(403);
     }
 
     /**

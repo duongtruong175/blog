@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Confirm Password
+        {{ __('Confirm Password') }}
     </x-slot>
 
     <x-auth-card>

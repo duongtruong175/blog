@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Forgot Password
+        {{ __('Forgot Password') }}
     </x-slot>
 
     <x-auth-card>

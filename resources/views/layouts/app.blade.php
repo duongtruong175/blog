@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $title ? $title : 'Blog' }}</title>
+        <title>{{ $title ? $title : __('Blog') }}</title>
 
         @include('layouts.header')
     </head>
@@ -24,30 +24,79 @@
                                     <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                                 </a>
                                 <span class="ml-4 font-medium text-2xl">
-                                    Blog
+                                    {{ __('Blog') }}
                                 </span>
                             </div>
             
                             <!-- Links on Left Naigation-->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                                    Home
+                                    {{ __('Home') }}
                                 </x-nav-link>
                                 <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">
-                                    Articles
+                                    {{ __('Articles') }}
                                 </x-nav-link>
                                 <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                                    About
+                                    {{ __('About Us') }}
                                 </x-nav-link>
+
+                                <!-- Locale -->
+                                <x-dropdown align="top" width="40">
+                                    <!-- Click to open dropdown -->
+                                    <x-slot name="trigger">
+                                        <button class="p-2 flex items-center hover:bg-gray-300 rounded transition duration-150 ease-in-out">
+                                            @php
+                                                if (session()->has('locale')) {
+                                                    $locale = session()->get('locale');
+                                                } else {
+                                                    $locale = 'en';
+                                                }
+                                            @endphp
+                                            @if ($locale === 'en')
+                                                <x-en-flag class="w-6 h-4" />
+                                            @elseif ($locale === 'vi')
+                                                <x-vi-flag class="w-6 h-4" />
+                                            @endif
+                                            <div class="ml-1">
+                                                <svg class="fill-current h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    </x-slot>
+                                    <!-- Dropdown -->
+                                    <x-slot name="content">
+                                        <div class="mx-1">
+                                            <x-dropdown-link :href="route('locale', ['locale' => 'en'])">
+                                                <div class="flex items-center">
+                                                    <x-en-flag class="w-6 h-4" />
+                                                    <span class="text-sm pl-2">
+                                                        English
+                                                    </span>
+                                                </div>
+                                            </x-dropdown-link>
+                                        </div>
+                                        <div class="mx-1">
+                                            <x-dropdown-link :href="route('locale', ['locale' => 'vi'])">
+                                                <div class="flex items-center">
+                                                    <x-vi-flag class="w-6 h-4" />
+                                                    <span class="text-sm pl-2">
+                                                        Tiếng Việt
+                                                    </span>
+                                                </div>
+                                            </x-dropdown-link>
+                                        </div>
+                                    </x-slot>
+                                </x-dropdown>
                             </div>
                         </div>
             
                         <!-- Links on Right Navigation + Settings Dropdown (screen > sm (640px)) -->
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             @auth
-                                <x-dropdown align="right" width="48">
+                                <x-dropdown align="right" width="40">
                                     <x-slot name="trigger">
-                                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                        <button class="flex items-center text-base font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                             <div>{{ Auth::user()->name }}</div>
             
                                             <div class="ml-1">
@@ -73,9 +122,9 @@
                                 </x-dropdown>
                             @else
                                 <div class="px-6 py-4 flex">
-                                    <a href="{{ route('login') }}" class="text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">Log in</a>
+                                    <a href="{{ route('login') }}" class="text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">{{ __('Log In') }}</a>
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">Register</a>
+                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">{{ __('Register') }}</a>
                                     @endif
                                 </div>
                             @endauth
@@ -97,14 +146,62 @@
                 <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                            Home
+                            {{ __('Home') }}
                         </x-responsive-nav-link>
                         <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">
-                            Articles
+                            {{ __('Articles') }}
                         </x-responsive-nav-link>
                         <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                            About
+                            {{ __('About Us') }}
                         </x-responsive-nav-link>
+                        <!-- Locale -->
+                        <x-dropdown align="top" width="40">
+                            <!-- Click to open dropdown -->
+                            <x-slot name="trigger">
+                                <button class="p-2 flex items-center hover:bg-gray-300 rounded transition duration-150 ease-in-out">
+                                    @php
+                                        if (session()->has('locale')) {
+                                            $locale = session()->get('locale');
+                                        } else {
+                                            $locale = 'en';
+                                        }
+                                    @endphp
+                                    @if ($locale === 'en')
+                                        <x-en-flag class="w-6 h-4" />
+                                    @elseif ($locale === 'vi')
+                                        <x-vi-flag class="w-6 h-4" />
+                                    @endif
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+                            <!-- Dropdown -->
+                            <x-slot name="content">
+                                <div class="mx-1">
+                                    <x-dropdown-link :href="route('locale', ['locale' => 'en'])">
+                                        <div class="flex items-center">
+                                            <x-en-flag class="w-6 h-4" />
+                                            <span class="text-sm pl-2">
+                                                English
+                                            </span>
+                                        </div>
+                                    </x-dropdown-link>
+                                </div>
+                                <div class="mx-1">
+                                    <x-dropdown-link :href="route('locale', ['locale' => 'vi'])">
+                                        <div class="flex items-center">
+                                            <x-vi-flag class="w-6 h-4" />
+                                            <span class="text-sm pl-2">
+                                                Tiếng Việt
+                                            </span>
+                                        </div>
+                                    </x-dropdown-link>
+                                </div>
+                            </x-slot>
+                        </x-dropdown>
                     </div>
             
                     <!-- Responsive Settings Options -->
@@ -131,11 +228,11 @@
                     @else
                         <div class="pt-2 pb-3 border-t border-gray-200">
                             <div class="space-y-1">
-                                <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Log in</a>
+                                <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">{{ __('Log In') }}</a>
                             </div>
                             @if (Route::has('register'))            
                                 <div class="mt-3 space-y-1">
-                                    <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Register</a>
+                                    <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">{{ __('Register') }}</a>
                                 </div>
                             @endif
                         </div>

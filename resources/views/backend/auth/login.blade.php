@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Admin | Login</title>
+        <title>{{ __('Admin') }} | {{ __('Login') }}</title>
 
         @include('layouts.backend_header')
     </head>
@@ -15,7 +15,7 @@
             <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
                 <div class="flex items-center text-center">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                    <span class="ml-4 text-2xl">Admin Blog</span>
+                    <span class="ml-4 text-2xl">{{ __('Admin Blog') }}</span>
                 </div>
             
                 <div class="w-full sm:mx-2 sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
@@ -55,7 +55,7 @@
 
                         <div class="flex items-center justify-end mt-4">
                             <x-button class="ml-3">
-                                {{ __('Log in') }}
+                                {{ __('Log In') }}
                             </x-button>
                         </div>
                     </form>

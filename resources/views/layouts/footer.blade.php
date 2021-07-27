@@ -33,6 +33,7 @@
                     "content": content
                 },
                 success: function(response){
+                    $("textarea[name=content]").val('');
                     let user_name = response.user_name;
                     let time_created = response.time_created;
                     let content = response.content;
@@ -59,7 +60,6 @@
                 },
                 error: function (response) {
                     let res = JSON.parse(response.responseText);
-                    console.log(res);
                     $("#ul-errors").append("<li class=\"py-1 px-2\">" + res.message + "</li>");
                     if(typeof res.errors["1"] !== 'undefined') {
                         let errors = res.errors["1"];

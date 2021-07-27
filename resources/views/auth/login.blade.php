@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Login
+        {{ __('Login') }}
     </x-slot>
 
     <x-auth-card>
@@ -52,7 +52,7 @@
                 @endif
 
                 <x-button class="ml-3">
-                    {{ __('Log in') }}
+                    {{ __('Log In') }}
                 </x-button>
             </div>
         </form>
