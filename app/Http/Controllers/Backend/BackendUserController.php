@@ -22,7 +22,7 @@ class BackendUserController extends Controller
     public function index()
     {
         // get all data
-        $users = User::paginate(5);
+        $users = User::paginate(request('length') ? request('length') : 5);
 
         $viewdata = [
             'users' => $users
@@ -123,8 +123,8 @@ class BackendUserController extends Controller
         $user = User::findOrFail($id);
         
         // Detach all relationships
-        $user->roles->detach();
-        $user->delete();
+        $user->roles()->detach();
+        $user->forceDelete();
 
         return redirect()->route('backend_user.index');
     }

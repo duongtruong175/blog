@@ -9,7 +9,7 @@
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
 
-<!-- Scripts -->
+<!-- Scripts open/close dropdown -->
 <script>
     // Burger menus
     document.addEventListener('DOMContentLoaded', function() {
@@ -52,3 +52,25 @@
         }
     });
 </script>
+
+<!-- Change rows data table -->
+<script>
+    $(document).ready(function() {
+        // event on change select
+        $("#paginate").on("change", function (e) {
+            let length = $("#paginate").val();
+            let url = window.location.protocol + "//" + window.location.host + window.location.pathname + "?length=" + length;
+            window.location.href = url;
+        });
+    });
+</script>
+
+<!--Show confirm delete -->
+<script>
+    $(document).ready(function() {
+        $(".confirmation-delete").click(function (e) {
+            return confirm("Are you sure delete it and its relationships?");
+        });
+    });
+</script>
+

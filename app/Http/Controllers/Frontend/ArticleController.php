@@ -20,6 +20,19 @@ class ArticleController extends Controller
     {
         // Get list of articles
         $articles = Article::with(['user', 'categories', 'tags', 'comments'])
+                            ->when(request('category_id'), function($query) {
+                                return $query->whereHas('categories', function($q) {
+                                    return $q->where('id', request('category_id'));
+                                });
+                            })
+                            ->when(request('tag_id'), function($query) {
+                                return $query->whereHas('tags', function($q) {
+                                    return $q->where('id', request('tag_id'));
+                                });
+                            })
+                            ->when(request('keyword'), function($query) {
+                                return $query->where('title', 'like', '%' . request('keyword') . '%');
+                            })
                             ->orderBy('created_at', 'desc')
                             ->paginate(5);
         $categories = Category::all();

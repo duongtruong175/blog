@@ -43,6 +43,14 @@
                                     <p>{!! $article->getTagsLinksAttribute() !!}</p>
                                 </div>
                             </div>
+                            <div class="mt-4 flex items-center text-center">
+                                <div class="mx-auto bg-yellow-100 rounded flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-yellow-500 p-2 text-sm">{{ __('This article was updated at') . ' ' . $article->updated_at }}</p>
+                                </div>
+                            </div>
                             <div class="my-4">
                                 <p>
                                     {!! nl2br($article->content) !!}
@@ -133,12 +141,9 @@
                 <div class="text-xl font-bold p-4 border-b">
                     {{ __("Table of contents") }}
                 </div>
-                <div class="pl-8 py-4">
-                    <ul>
-                        <li>Page 1</li>
-                        <li>Page 2</li>
-                        <li>Page 3</li>
-                        <li>Page 4</li>
+                <div class="py-4">
+                    <ul class="bg-gray-100 p-2">
+                        <p>{{ __('There is no table of contents') }}</p>
                     </ul>
                 </div>
             </div>

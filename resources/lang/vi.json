@@ -63,6 +63,10 @@
     "Content": "Nội dung",
     "Add article": "Thêm bài viết",
     "Add new article": "Thêm mới bài viết",
+    "Max :number categories": "Tối đa :number danh mục",
+    "Max 3 categories": "Tối đa 3 danh mục",
+    "The input contains only numbers, letters and comma": "Đầu vào chỉ có thể là chữ số, chữ cái hoặc dấu phẩy",
+    "Comma-separated values": "Các giá trị được phân tách bằng dấu phẩy",
     "Edit article": "Chỉnh sửa bài viết",
 
     "Category list": "Danh sách danh mục",
@@ -112,5 +116,9 @@
     "No tags yet": "Chưa có thẻ nào",
     "Article detail": "Chi tiết bài viết",
     "Enter a content comment": "Nhập nội dung bình luận",
-    "Table of contents": "Mục lục"
+    "Table of contents": "Mục lục",
+    "No comments yet": "Chưa có bình luận nào",
+    "Login to comment": "Đăng nhập để có thể bình luận",
+    "There is no table of contents": "Không có mục lục",
+    "This article was updated at": "Bài viết này được cập nhập lần cuối lúc"
 }

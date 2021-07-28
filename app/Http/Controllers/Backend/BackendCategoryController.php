@@ -21,7 +21,7 @@ class BackendCategoryController extends Controller
     public function index()
     {
         // get all data
-        $categories = Category::paginate(5);
+        $categories = Category::paginate(request('length') ? request('length') : 5);
 
         $viewdata = [
             'categories' => $categories
@@ -116,8 +116,8 @@ class BackendCategoryController extends Controller
         $category = Category::findOrFail($id);
 
         // Detach all relationships
-        $category->articles->detach();
-        $category->delete();
+        $category->articles()->detach();
+        $category->forceDelete();
 
         return redirect()->route('backend_category.index');
     }

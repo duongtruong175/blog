@@ -20,7 +20,7 @@ class BackendTagController extends Controller
     public function index()
     {
         // get all data
-        $tags = Tag::paginate(5);
+        $tags = Tag::paginate(request('length') ? request('length') : 5);
 
         $viewdata = [
             'tags' => $tags
@@ -49,6 +49,7 @@ class BackendTagController extends Controller
     public function store(StoreTagRequest $request)
     {
         // Validate errors (StoreTagRequest validated)
+        $request->name = trim($request->name);
         $name = preg_replace('/\s\s+/', ' ', $request->name);
         $tag = Tag::create([
             'name' => $name
@@ -118,8 +119,8 @@ class BackendTagController extends Controller
         $tag = Tag::findOrFail($id);
 
         // Detach all relationships
-        $tag->articles->detach();
-        $tag->delete();
+        $tag->articles()->detach();
+        $tag->forceDelete();
 
         return redirect()->route('backend_tag.index');
     }

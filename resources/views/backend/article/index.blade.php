@@ -24,9 +24,9 @@
                         <p class="mr-3 text-sm">{{ __('Rows')}}</p>
                         <div class="flex bg-white border border-gray-100 rounded">
                             <select class="text-sm border-0 w-full" name="paginate" id="paginate">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
+                                <option value="5" {{ request('length') == 5 ? 'selected' : '' }}>5</option>
+                                <option value="10" {{ request('length') == 10 ? 'selected' : '' }}>10</option>
+                                <option value="20" {{ request('length') == 20 ? 'selected' : '' }}>20</option>
                             </select>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                                 <form action="{{ route('backend_article.destroy', $article->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="flex items-center" type="submit">
+                                                    <button class="flex items-center confirmation-delete" type="submit">
                                                         <span class="inline-block">
                                                             <x-delete-icon class="h-5 w-5 {{ $own_articles->contains($article) ? 'text-red-500 hover:text-gray-800' : 'text-gray-300'}}" />
                                                         </span>
@@ -91,7 +91,7 @@
                 
                 <!-- Paging Bar -->
                 <div class="pt-4">
-                    {{ $articles->links() }}
+                    {{ $articles->onEachSide(1)->appends(request()->except('page'))->links() }}
                 </div>
             </div>
         </div>

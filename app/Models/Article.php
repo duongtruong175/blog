@@ -65,7 +65,7 @@ class Article extends Model
     public function getCategoriesLinksAttribute()
     {
         $categories = $this->categories()->get()->map(function($category) {
-            return '<a class="text-blue-500">'.$category->name.'</a>';
+            return '<a class="text-blue-500" href="' . route('articles.index') . '?category_id=' . $category->id . '">' . $category->name . '</a>';
         })->implode(' | ');
 
         if ($categories == '') return 'none';
@@ -80,7 +80,7 @@ class Article extends Model
     public function getTagsLinksAttribute()
     {
         $tags = $this->tags()->get()->map(function($tag) {
-            return '<a class="text-blue-500">'.$tag->name.'</a>';
+            return '<a class="text-blue-500" href="' . route('articles.index') . '?tag_id=' . $tag->id . '">' . $tag->name . '</a>';
         })->implode(' | ');
 
         if ($tags == '') return 'none';

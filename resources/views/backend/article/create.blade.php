@@ -23,9 +23,34 @@
             <!-- Content -->
             <div class="mt-4">
                 <label for="content" class="block font-medium text-sm text-gray-700">{{ __('Content') }}</label>
-                <textarea rows="10" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="content" name="content" required >{{ old('content') }}</textarea>
+                <textarea rows="10" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" style="min-height: 6.725rem" id="content" name="content" required >{{ old('content') }}</textarea>
                 @error('content')
                     <div class="text-xs text-red-900 py-1 px-2">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Categories -->
+            <fieldset class="mt-4">
+                <legend for="categories" class="block font-medium text-sm text-gray-700">{{ __('Categories') . ' (' . __('Max :number categories', ['number' => 3]) . ')' }}</legend>
+                <div class="mt-1 w-full overscroll-y-auto overflow-auto h-40">
+                    @foreach ($categories as $category)
+                        <div class="flex items-center my-2 ml-2 text-sm">
+                            <input class="rounded" type="checkbox" id="category_{{ $category->id }}" name="categories[]" value="{{ $category->id }}" />
+                            <label class="pl-2" for="category_{{ $category->id }}">{{ $category->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+                @error('categories')
+                    <div class="text-xs text-red-900 py-1 px-2">{{ __($message) }}</div>
+                @enderror
+            </fieldset>
+
+            <!-- Tags -->
+            <div class="mt-4">
+                <label for="tags" class="block font-medium text-sm text-gray-700">{{ __('Tags') . ' (' . __('Comma-separated values') . ')' }}</label>
+                <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="tags" name="tags" value="{{ old('tags') }}" />
+                @error('tags')
+                    <div class="text-xs text-red-900 py-1 px-2">{{ __($message) }}</div>
                 @enderror
             </div>
 

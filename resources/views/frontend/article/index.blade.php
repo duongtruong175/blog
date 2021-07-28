@@ -29,7 +29,7 @@
                                                 <p>{{ __('Author') }}:</p>
                                             </div>
                                             <div class="ml-2">
-                                                <p>{{ $article->user->name }}</p>
+                                                <div class="overflow-hidden whitespace-nowrap">{{ $article->user->name }}</div>
                                             </div>
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center">
@@ -37,7 +37,7 @@
                                                 <p>{{ __('Categories') }}:</p>
                                             </div>
                                             <div class="ml-2">
-                                                <p>{!! $article->getCategoriesLinksAttribute() !!}</p>
+                                                <div class="overflow-hidden whitespace-nowrap">{!! $article->getCategoriesLinksAttribute() !!}</div>
                                             </div>
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center">
@@ -45,7 +45,7 @@
                                                 <p>{{ __('Tags') }}:</p>
                                             </div>
                                             <div class="ml-2">
-                                                <p>{!! $article->getTagsLinksAttribute() !!}</p>
+                                                <div class="overflow-hidden whitespace-nowrap">{!! $article->getTagsLinksAttribute() !!}</div>
                                             </div>
                                         </div>
                                         <div class="text-sm mt-4 flex items-center text-center text-gray-500">
@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="text-sm my-4">
                                             <p>
-                                                {{ strlen($article->content) > 400 ? substr($article->content, 0, 400) . ' ... ' : $article->content }}
+                                                <p class="overflow-hidden" style="max-height: 9rem; min-height: 9rem">{{ strlen($article->content) > 400 ? substr($article->content, 0, 400) . ' ... ' : $article->content }}</p>
                                                 <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', $article->id) }}">
                                                     {{ __('Read full article') }}
                                                 </a>
@@ -72,10 +72,10 @@
                         @endforelse
                     </div>
 
-                    @if(!empty($articles))
+                    @if($articles->isNotEmpty())
                         <!-- Paging Bar -->
                         <div class="pt-4">
-                            {{ $articles->links() }}
+                            {{ $articles->onEachSide(1)->appends(request()->except('page'))->links() }}
                         </div>
                     @endif
                 </div>
@@ -90,8 +90,8 @@
                         {{ __('Search by keyword') }}
                     </div>
                     <div class="pl-4 py-4">
-                        <form action="#" method="GET">
-                            <input class="text-xs w-7/12 p-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="keyword" name="keyword" placeholder="{{ __('Enter a keyword') }}" required />
+                        <form action="{{ route('articles.index') }}" method="GET">
+                            <input class="text-xs w-7/12 p-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="keyword" name="keyword" placeholder="{{ __('Enter a keyword') }}" value="{{ request('keyword') }}" required />
                             <button class="text-xs ml-2 text-white p-2 bg-blue-500 hover:bg-blue-800 rounded">{{ __('Search') }}</button>
                         </form>
                     </div>
@@ -100,12 +100,12 @@
                     <div class="text-xl font-bold p-4 bg-gray-100">
                         {{ __('Categories') }}
                     </div>
-                    <div class="text-sm">
+                    <div class="text-sm h-64 overscroll-y-auto overflow-y-auto overflow-x-hidden">
                         <ul class="pl-10 pt-3 pb-6">
                             @forelse($categories as $category)
                                 <li class="pt-3">
                                     <div class="transition duration-300 transform text-blue-500 hover:text-blue-900 hover:scale-105" >
-                                        <a href="#">
+                                        <a href="{{ route('articles.index') . '?category_id=' . $category->id }}">
                                             {{ $category->name }}
                                         </a>
                                     </div>
@@ -127,7 +127,7 @@
                             @forelse($top_tags as $tag)
                                 <li class="pt-3">
                                     <div class="transition duration-300 transform text-blue-500 hover:text-blue-800 hover:scale-105" >
-                                        <a href="#">
+                                        <a href="{{ route('articles.index') . '?tag_id=' . $tag->id }}">
                                             {{ $tag->name }}
                                         </a>
                                     </div>
