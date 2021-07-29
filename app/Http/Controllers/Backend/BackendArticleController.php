@@ -101,6 +101,14 @@ class BackendArticleController extends Controller
                 $article->tags()->attach($tag);
             }
         }
+        if($request->hasFile('image_url')) {
+            $file_name = 'image_article_' . $article->id;
+            $ext = $request->file('image_url')->getClientOriginalExtension();
+            $article->addMediaFromRequest('image_url')
+                    ->usingName($file_name)
+                    ->usingFileName($file_name . '.' . $ext)
+                    ->toMediaCollection('images_url');
+        }
 
         return redirect()->route('backend_article.index');
     }
@@ -179,38 +187,53 @@ class BackendArticleController extends Controller
                 $input = preg_replace('/,+/', ',', $input);
                 $input = preg_replace('/, +/', ',', $input);
                 $input = preg_replace('/ +,/', ',', $input);
-                $tags = explode(',', $input);
+                $new_tags_name = explode(',', $input);
             } else {
                 return redirect()->route('backend_article.edit', $id)
                         ->withErrors(['tags' => "The input contains only numbers, letters and comma"])
                         ->withInput($request->all());
             }
+        } else {
+            $new_tags_name = array();
         }
 
-        //
-        
+        // request validated
         $article = Article::findOrFail($id);
         $article->title = $request->title;
         $article->content = $request->content;
         $article->save();
 
-        // Detach all old relationships
+        // Detach all old relationships and update new relationships
         $article->categories()->detach();
-        foreach ($article->tags as $tag) {
-            $article->tags()->detach($tag->id);
-            Tag::where('id', $tag->id)
-                ->forceDelete();
-        }
-
-        // update new relationships
         if (isset($request->categories)) {
             $article->categories()->attach($request->categories);
         }
-        if (isset($tags)) {
-            foreach ($tags as $tag_name) {
+
+        $equal_tags = array();
+        foreach ($article->tags as $tag) {
+            if (!in_array($tag->name, $new_tags_name)) {
+                $article->tags()->detach($tag->id);
+                Tag::where('id', $tag->id)
+                    ->forceDelete();
+            } else {
+                $equal_tags[] = $tag->name;
+            }
+        }
+        foreach ($new_tags_name as $tag_name) {
+            if (!in_array($tag_name, $equal_tags)) {
                 $tag = Tag::firstOrCreate(['name' => $tag_name]);
                 $article->tags()->attach($tag);
             }
+        }
+        
+        if($request->hasFile('image_url')) {
+            $file_name = 'image_article_' . $article->id;
+            $ext = $request->file('image_url')->getClientOriginalExtension();
+            $article->clearMediaCollection('images_url');
+            $article->addMediaFromRequest('image_url')
+                    ->usingName($file_name)
+                    ->usingFileName($file_name . '.' . $ext)
+                    ->toMediaCollection('images_url');
         }
         
         return redirect()->route('backend_article.index');

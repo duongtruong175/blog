@@ -8,7 +8,7 @@
         {{ __('Add new article') }}
     </div>
     <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-white sm:rounded-lg">
-        <form method="POST" action="{{ route('backend_article.store') }}">
+        <form method="POST" action="{{ route('backend_article.store') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Title -->
@@ -50,6 +50,15 @@
                 <label for="tags" class="block font-medium text-sm text-gray-700">{{ __('Tags') . ' (' . __('Comma-separated values') . ')' }}</label>
                 <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="tags" name="tags" value="{{ old('tags') }}" />
                 @error('tags')
+                    <div class="text-xs text-red-900 py-1 px-2">{{ __($message) }}</div>
+                @enderror
+            </div>
+
+            <!-- Image -->
+            <div class="mt-4">
+                <label for="image_url" class="block font-medium text-sm text-gray-700">{{ __('Image') }}</label>
+                <input class="block mt-1 p-1 text-center text-sm" type="file" id="image_url" name="image_url" />
+                @error('image_url')
                     <div class="text-xs text-red-900 py-1 px-2">{{ __($message) }}</div>
                 @enderror
             </div>

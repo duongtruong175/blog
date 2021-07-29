@@ -14,8 +14,10 @@
                             {{ $article->title }}
                         </div>
                         <div class="w-full">
-                            <div class="pt-12 pl-4 pb-4">
-                                <img width="200" height="200" src="https://vantien.net/wp-content/uploads/2019/01/5826817b0ad24b8126df6762b54ae1b7.png" alt="{{ $article->title }}">
+                            <div class="py-4 flex items-center">
+                                @if ($article->getFirstMediaUrl('images_url', 'large'))
+                                    <img class="mx-auto" width="400" height="200" src="{{ asset($article->getFirstMediaUrl('images_url', 'large')) }}" alt="{{ $article->title }}">
+                                @endif
                             </div>
                         </div>
                         <div class="w-full p-4 text-base">

@@ -58,6 +58,12 @@ generating a new application key:
 php artisan key:generate
 ```
 
+create the symbolic link to storage/app/public:
+
+```bash
+php artisan storage:link
+```
+
 run:
 
 ```bash

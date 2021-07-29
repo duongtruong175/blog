@@ -24,9 +24,9 @@
                         <p class="mr-3 text-sm">{{ __('Rows')}}</p>
                         <div class="flex bg-white border border-gray-100 rounded">
                             <select class="text-sm border-0 w-full" name="paginate" id="paginate">
-                                <option value="5" {{ request('length') == 5 ? 'selected' : '' }}>5</option>
-                                <option value="10" {{ request('length') == 10 ? 'selected' : '' }}>10</option>
-                                <option value="20" {{ request('length') == 20 ? 'selected' : '' }}>20</option>
+                                @foreach([5,10,20,50] as $length)
+                                    <option value="{{ $length }}" {{ request('length') == $length ? 'selected' : '' }}>{{ $length }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -39,6 +39,7 @@
                             <tr>
                                 <th class="border px-2 py-2">{{ __('ID') }}</th>
                                 <th class="border px-2 py-2">{{ __('User created') }}</th>
+                                <th class="border px-2 py-2">{{ __('Image') }}</th>
                                 <th class="border px-2 py-2">{{ __('Title') }}</th>
                                 <th class="border px-2 py-2">{{ __('Content') }}</th>
                                 <th class="border px-2 py-2">{{ __('Created at') }}</th>
@@ -51,28 +52,33 @@
                                 <tr>
                                     <td class="border px-2 py-2">{{ $article->id }}</td>
                                     <td class="border px-2 py-2">{{ $article->user->name }}</td>
+                                    <td class="border px-2 py-2">
+                                        @if ($article->getFirstMediaUrl('images_url', 'small'))
+                                            <img width="100" height="100" src="{{ asset($article->getFirstMediaUrl('images_url', 'small')) }}" alt="{{ $article->title }}">
+                                        @endif
+                                    </td>
                                     <td class="border px-2 py-2">{{ $article->title }}</td>
                                     <td class="border px-2 py-2">
-                                        {{ strlen($article->content) > 300 ? substr($article->content, 0, 300) . ' ...' :  $article->content }}
+                                        {{ substr($article->content, 0, 300) . ' ...' }}
                                     </td>
                                     <td class="border px-2 py-2">{{ $article->created_at }}</td>
                                     <td class="border px-2 py-2">{{ $article->updated_at }}</td>
                                     <td class="border px-2 py-2">
-                                        <div class="flex justify-center items-center {{ $own_articles->contains($article) ? '' : 'pointer-events-none text-gray-300'}}">
-                                            <div class="inline-block mx-1">
+                                        <div class="flex justify-center items-center {{ $own_articles->contains($article) ? '' : 'pointer-events-none'}}">
+                                            <div class="inline-block mx-1 p-1 rounded {{ $own_articles->contains($article) ? 'bg-green-500 hover:bg-green-800' : 'bg-gray-300'}}">
                                                 <a class="flex items-center" href="{{ route('backend_article.edit', $article->id) }}">
                                                     <span class="inline-block">
-                                                        <x-edit-icon class="h-5 w-5 {{ $own_articles->contains($article) ? 'text-green-500 hover:text-gray-800' : 'text-gray-300'}}" />
+                                                        <x-edit-icon class="h-4 w-4 text-white" />
                                                     </span>
                                                 </a>
                                             </div>
-                                            <div class="inline-block mx-1">
+                                            <div class="inline-block mx-1 p-1 rounded {{ $own_articles->contains($article) ? 'bg-red-500 hover:bg-red-800' : 'bg-gray-300'}}">
                                                 <form action="{{ route('backend_article.destroy', $article->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="flex items-center confirmation-delete" type="submit">
                                                         <span class="inline-block">
-                                                            <x-delete-icon class="h-5 w-5 {{ $own_articles->contains($article) ? 'text-red-500 hover:text-gray-800' : 'text-gray-300'}}" />
+                                                            <x-delete-icon class="h-4 w-4 text-white" />
                                                         </span>
                                                     </button>
                                                 </form>

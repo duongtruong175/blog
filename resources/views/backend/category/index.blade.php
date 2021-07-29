@@ -24,9 +24,9 @@
                         <p class="mr-3 text-sm">{{ __('Rows')}}</p>
                         <div class="flex bg-white border border-gray-100 rounded">
                             <select class="text-sm border-0 w-full" name="paginate" id="paginate">
-                                <option value="5" {{ request('length') == 5 ? 'selected' : '' }}>5</option>
-                                <option value="10" {{ request('length') == 10 ? 'selected' : '' }}>10</option>
-                                <option value="20" {{ request('length') == 20 ? 'selected' : '' }}>20</option>
+                                @foreach([5,10,20,50] as $length)
+                                    <option value="{{ $length }}" {{ request('length') == $length ? 'selected' : '' }}>{{ $length }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -53,20 +53,20 @@
                                     <td class="border px-2 py-2">{{ $category->updated_at }}</td>
                                     <td class="border px-2 py-2">
                                         <div class="flex justify-center items-center">
-                                            <div class="inline-block mx-1">
+                                            <div class="inline-block mx-1 p-1 rounded bg-green-500 hover:bg-green-800">
                                                 <a class="flex items-center" href="{{ route('backend_category.edit', $category->id) }}">
                                                     <span class="inline-block">
-                                                        <x-edit-icon class="h-5 w-5 text-green-500 hover:text-gray-800" />
+                                                        <x-edit-icon class="h-4 w-4 text-white" />
                                                     </span>
                                                 </a>
                                             </div>
-                                            <div class="inline-block mx-1">
+                                            <div class="inline-block mx-1 p-1 rounded bg-red-500 hover:bg-red-800">
                                                 <form action="{{ route('backend_category.destroy', $category->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="flex items-center confirmation-delete" type="submit">
                                                         <span class="inline-block">
-                                                            <x-delete-icon class="h-5 w-5 text-red-500 hover:text-gray-800" />
+                                                            <x-delete-icon class="h-4 w-4 text-white" />
                                                         </span>
                                                     </button>
                                                 </form>

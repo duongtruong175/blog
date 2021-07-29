@@ -15,7 +15,9 @@
                                 <div class="bg-white shadow rounded overflow-hidden sm:flex">
                                     <div class="w-full sm:w-4/12 flex">
                                         <div class="p-2 m-auto">
-                                            <img width="200" height="200" src="https://vantien.net/wp-content/uploads/2019/01/5826817b0ad24b8126df6762b54ae1b7.png" alt="{{ $article->title }}">
+                                            @if ($article->getFirstMediaUrl('images_url', 'thumb'))
+                                                <img width="200" height="200" src="{{ asset($article->getFirstMediaUrl('images_url', 'thumb')) }}" alt="{{ $article->title }}">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="w-full px-4 sm:w-8/12 sm:px-2 py-4">
@@ -56,7 +58,7 @@
                                         </div>
                                         <div class="text-sm my-4">
                                             <p>
-                                                <p class="overflow-hidden" style="max-height: 9rem; min-height: 9rem">{{ strlen($article->content) > 400 ? substr($article->content, 0, 400) . ' ... ' : $article->content }}</p>
+                                                <p class="overflow-hidden" style="max-height: 9rem; min-height: 9rem">{{ substr($article->content, 0, 399) . ' ...' }}</p>
                                                 <a class="text-blue-500 hover:text-blue-800" href="{{ route('articles.show', $article->id) }}">
                                                     {{ __('Read full article') }}
                                                 </a>

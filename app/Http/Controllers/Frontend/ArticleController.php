@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -36,7 +37,13 @@ class ArticleController extends Controller
                             ->orderBy('created_at', 'desc')
                             ->paginate(5);
         $categories = Category::all();
-        $top_tags = Tag::all();
+        $results_raw = DB::select('SELECT tag_id FROM article_tag GROUP BY tag_id ORDER BY COUNT(tag_id) DESC LIMIT 5');
+        $tags_id = array();
+        foreach ($results_raw as $result_raw) {
+            array_push($tags_id, $result_raw->tag_id);
+        }
+        $top_tags = Tag::whereIn('id', $tags_id)
+                        ->get();
 
         $viewdata = [
             'articles' => $articles,

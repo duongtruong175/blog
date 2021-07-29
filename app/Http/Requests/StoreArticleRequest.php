@@ -26,7 +26,8 @@ class StoreArticleRequest extends FormRequest
         return [
             //
             'title' => 'required|string|max:100|unique:articles,title,' . $this->id,
-            'content' => 'required|string'
+            'content' => 'required|string',
+            'image_url' => 'image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ];
     }
 }
