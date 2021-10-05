@@ -7,9 +7,12 @@
     <title>Mail</title>
 </head>
 <body>
-    <h3>{{ $content['title'] }}</h3>
-    <p>{{ $content['body'] }}</p>
-    <br>
-    <p>Thank you</p>
+    <p>Dear Admin,</p>
+    <br />
+    <p>Web blog application has a new registered user. User's information:</p>
+    <p>Name: {{ $content['name'] }}</p>
+    <p>Email: {{ $content['email'] }}</p>
+    <br />
+    <p>Thank you for reading.</p>
 </body>
 </html>

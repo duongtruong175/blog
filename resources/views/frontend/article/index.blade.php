@@ -106,7 +106,7 @@
                         <ul class="pl-10 pt-3 pb-6">
                             @forelse($categories as $category)
                                 <li class="pt-3">
-                                    <div class="transition duration-300 transform text-blue-500 hover:text-blue-900 hover:scale-105" >
+                                    <div class="inline-block transition duration-300 transform text-blue-500 hover:scale-110" >
                                         <a href="{{ route('articles.index') . '?category_id=' . $category->id }}">
                                             {{ $category->name }}
                                         </a>
@@ -128,7 +128,7 @@
                         <ul class="pl-10 pt-3 pb-6">
                             @forelse($top_tags as $tag)
                                 <li class="pt-3">
-                                    <div class="transition duration-300 transform text-blue-500 hover:text-blue-800 hover:scale-105" >
+                                    <div class="inline-block transition duration-300 transform text-blue-500 hover:scale-110" >
                                         <a href="{{ route('articles.index') . '?tag_id=' . $tag->id }}">
                                             {{ $tag->name }}
                                         </a>

@@ -138,6 +138,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'tags' => [
+            'regex' => 'The tags contains only numbers, letters and commas'
+        ],
+        'name' => [
+            'regex' => 'The name contains only numbers and letters'
+        ]
     ],
 
     /*

@@ -20,7 +20,11 @@ git clone https://github.com/duongtruong175/blog.git
 composer install
 ```
 
-copy file .env.example to .env
+copy file .env.example to .env (Ex: Windows)
+
+```bash
+copy .env.example .env
+```
 
 #### Nodejs
 
@@ -67,7 +71,7 @@ php artisan storage:link
 run:
 
 ```bash
-- php artisan serve
+php artisan serve
 ```
 
 ## Usage

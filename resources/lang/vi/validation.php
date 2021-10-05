@@ -122,7 +122,7 @@ return [
     'uploaded'             => 'Trường :attribute tải lên thất bại.',
     'url'                  => 'Trường :attribute không giống với định dạng một URL.',
     'uuid'                 => 'Trường :attribute phải là một chuỗi UUID hợp lệ.',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -133,13 +133,19 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
      */
-    
+
     'custom'               => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'tags' => [
+            'regex' => 'Thẻ tag chỉ có thể chứa các chữ số, chữ cái và dấu phẩy'
+        ],
+        'name' => [
+            'regex' => 'Thẻ name chỉ có thể chứa các chữ số và chữ cái'
+        ]
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
@@ -150,7 +156,7 @@ return [
     | of "email". This simply helps us make messages a little cleaner.
     |
      */
-    
+
     'attributes'           => [
         'address'               => 'địa chỉ',
         'age'                   => 'tuổi',

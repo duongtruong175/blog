@@ -9,7 +9,7 @@
 
         @include('layouts.header')
     </head>
-    <body>
+    <body class="font-sans antialiased">
         <div class="min-h-screen">
             <!-- Navigation -->
             <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -46,11 +46,7 @@
                                     <x-slot name="trigger">
                                         <button class="p-2 flex items-center hover:bg-gray-300 rounded transition duration-150 ease-in-out">
                                             @php
-                                                if (session()->has('locale')) {
-                                                    $locale = session()->get('locale');
-                                                } else {
-                                                    $locale = 'en';
-                                                }
+                                                $locale = app()->getLocale();
                                             @endphp
                                             @if ($locale === 'en')
                                                 <x-en-flag class="w-6 h-4" />
@@ -122,9 +118,9 @@
                                 </x-dropdown>
                             @else
                                 <div class="px-6 py-4 flex">
-                                    <a href="{{ route('login') }}" class="text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">{{ __('Log In') }}</a>
+                                    <a href="{{ route('login') }}" class="flex items-center text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">{{ __('Log In') }}</a>
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">{{ __('Register') }}</a>
+                                        <a href="{{ route('register') }}" class="flex items-center ml-4 text-sm text-white bg-green-500 hover:bg-green-800 font-medium px-4 py-2 rounded-2xl">{{ __('Register') }}</a>
                                     @endif
                                 </div>
                             @endauth
@@ -154,54 +150,52 @@
                         <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
                             {{ __('About Us') }}
                         </x-responsive-nav-link>
-                        <!-- Locale -->
-                        <x-dropdown align="top" width="40">
-                            <!-- Click to open dropdown -->
-                            <x-slot name="trigger">
-                                <button class="p-2 flex items-center hover:bg-gray-300 rounded transition duration-150 ease-in-out">
-                                    @php
-                                        if (session()->has('locale')) {
-                                            $locale = session()->get('locale');
-                                        } else {
-                                            $locale = 'en';
-                                        }
-                                    @endphp
-                                    @if ($locale === 'en')
-                                        <x-en-flag class="w-6 h-4" />
-                                    @elseif ($locale === 'vi')
-                                        <x-vi-flag class="w-6 h-4" />
-                                    @endif
-                                    <div class="ml-1">
-                                        <svg class="fill-current h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </button>
-                            </x-slot>
-                            <!-- Dropdown -->
-                            <x-slot name="content">
-                                <div class="mx-1">
-                                    <x-dropdown-link :href="route('locale', ['locale' => 'en'])">
-                                        <div class="flex items-center">
+                        <div class="ml-2">
+                            <!-- Locale -->
+                            <x-dropdown align="top" width="40">
+                                <!-- Click to open dropdown -->
+                                <x-slot name="trigger">
+                                    <button class="p-2 flex items-center hover:bg-gray-300 rounded transition duration-150 ease-in-out">
+                                        @php
+                                            $locale = app()->getLocale();
+                                        @endphp
+                                        @if ($locale === 'en')
                                             <x-en-flag class="w-6 h-4" />
-                                            <span class="text-sm pl-2">
-                                                English
-                                            </span>
-                                        </div>
-                                    </x-dropdown-link>
-                                </div>
-                                <div class="mx-1">
-                                    <x-dropdown-link :href="route('locale', ['locale' => 'vi'])">
-                                        <div class="flex items-center">
+                                        @elseif ($locale === 'vi')
                                             <x-vi-flag class="w-6 h-4" />
-                                            <span class="text-sm pl-2">
-                                                Tiếng Việt
-                                            </span>
+                                        @endif
+                                        <div class="ml-1">
+                                            <svg class="fill-current h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
                                         </div>
-                                    </x-dropdown-link>
-                                </div>
-                            </x-slot>
-                        </x-dropdown>
+                                    </button>
+                                </x-slot>
+                                <!-- Dropdown -->
+                                <x-slot name="content">
+                                    <div class="mx-1">
+                                        <x-dropdown-link :href="route('locale', ['locale' => 'en'])">
+                                            <div class="flex items-center">
+                                                <x-en-flag class="w-6 h-4" />
+                                                <span class="text-sm pl-2">
+                                                    English
+                                                </span>
+                                            </div>
+                                        </x-dropdown-link>
+                                    </div>
+                                    <div class="mx-1">
+                                        <x-dropdown-link :href="route('locale', ['locale' => 'vi'])">
+                                            <div class="flex items-center">
+                                                <x-vi-flag class="w-6 h-4" />
+                                                <span class="text-sm pl-2">
+                                                    Tiếng Việt
+                                                </span>
+                                            </div>
+                                        </x-dropdown-link>
+                                    </div>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
                     </div>
             
                     <!-- Responsive Settings Options -->
@@ -228,11 +222,11 @@
                     @else
                         <div class="pt-2 pb-3 border-t border-gray-200">
                             <div class="space-y-1">
-                                <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">{{ __('Log In') }}</a>
+                                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">{{ __('Log In') }}</x-responsive-nav-link>
                             </div>
                             @if (Route::has('register'))            
                                 <div class="mt-3 space-y-1">
-                                    <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">{{ __('Register') }}</a>
+                                    <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">{{ __('Register') }}</x-responsive-nav-link>
                                 </div>
                             @endif
                         </div>

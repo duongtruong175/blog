@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // Create admin account and provide permission
         $user = \App\Models\User::where('email', '=', 'admin@gmail.com')->first();
-        if( !$user) {
+        if (!$user) {
             $user = \App\Models\User::create([
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',

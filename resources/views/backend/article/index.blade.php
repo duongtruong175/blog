@@ -64,15 +64,15 @@
                                     <td class="border px-2 py-2">{{ $article->created_at }}</td>
                                     <td class="border px-2 py-2">{{ $article->updated_at }}</td>
                                     <td class="border px-2 py-2">
-                                        <div class="flex justify-center items-center {{ $own_articles->contains($article) ? '' : 'pointer-events-none'}}">
-                                            <div class="inline-block mx-1 p-1 rounded {{ $own_articles->contains($article) ? 'bg-green-500 hover:bg-green-800' : 'bg-gray-300'}}">
+                                        <div class="flex justify-center items-center">
+                                            <div class="inline-block mx-1 p-1 rounded bg-green-500 hover:bg-green-800">
                                                 <a class="flex items-center" href="{{ route('backend_article.edit', $article->id) }}">
                                                     <span class="inline-block">
                                                         <x-edit-icon class="h-4 w-4 text-white" />
                                                     </span>
                                                 </a>
                                             </div>
-                                            <div class="inline-block mx-1 p-1 rounded {{ $own_articles->contains($article) ? 'bg-red-500 hover:bg-red-800' : 'bg-gray-300'}}">
+                                            <div class="inline-block mx-1 p-1 rounded bg-red-500 hover:bg-red-800">
                                                 <form action="{{ route('backend_article.destroy', $article->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')

@@ -86,10 +86,8 @@
                                         </div>
                             
                                     </form>
-                                    <div class="text-xs text-red-900">
-                                        <ul id="ul-errors">
-                                        </ul>
-                                    </div>
+                                    <ul id="ul-errors" class="text-xs text-red-900">
+                                    </ul>
                                 @else
                                     <div class="w-full">
                                         <div class="border rounded p-2 flex">

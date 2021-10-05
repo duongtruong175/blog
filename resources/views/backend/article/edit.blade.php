@@ -42,7 +42,7 @@
                 <div class="mt-1 w-full overscroll-y-auto overflow-auto h-40">
                     @foreach ($categories as $category)
                         <div class="flex items-center my-2 ml-2 text-sm">
-                            <input class="rounded" type="checkbox" id="category_{{ $category->id }}" name="categories[]" value="{{ $category->id }}" {{ $own_categories->contains($category) ? 'checked' : '' }} />
+                            <input class="rounded" type="checkbox" id="category_{{ $category->id }}" name="categories[]" value="{{ $category->id }}" {{ $article->categories->contains($category) ? 'checked' : '' }} />
                             <label class="pl-2" for="category_{{ $category->id }}">{{ $category->name }}</label>
                         </div>
                     @endforeach

@@ -6,7 +6,6 @@
 </footer>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
 
 <!-- Scripts to add comment -->
@@ -60,9 +59,8 @@
                 },
                 error: function (response) {
                     let res = JSON.parse(response.responseText);
-                    $("#ul-errors").append("<li class=\"py-1 px-2\">" + res.message + "</li>");
-                    if(typeof res.errors["1"] !== 'undefined') {
-                        let errors = res.errors["1"];
+                    if(typeof res.errors.content !== 'undefined' && res.errors.content.length > 0) {
+                        let errors = res.errors.content;
                         errors.forEach((error, index) => {
                             $("#ul-errors").append("<li class=\"py-1 px-2\">" + error + "</li>");
                         });

@@ -28,6 +28,7 @@ class StoreTagRequest extends FormRequest
             'name' => 'required|string|max:255|regex:/^[0-9A-Za-z ]*$/|unique:tags,name,' . $this->id,
         ];
     }
+
     /**
      * Get the error messages for the defined validation rules.
      *

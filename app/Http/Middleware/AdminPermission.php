@@ -20,21 +20,21 @@ class AdminPermission
         // check login
         if (Auth::check()) {
             //check admin permission
-            $is_admin = 0;
-            foreach(Auth::user()->roles as $role) {
-                if($role->name === 'admin') {
-                    $is_admin = 1;
+            $is_admin = false;
+            foreach (Auth::user()->roles as $role) {
+                if ($role->name === 'admin') {
+                    $is_admin = true;
                     break;
                 }
             }
-            if ($is_admin === 1) {
+            if ($is_admin) {
                 return $next($request);
             } else {
                 // if don't have permission
                 return abort(403);
             }
         }
-        
+
         return redirect()->route('backend_auth.index');
     }
 }

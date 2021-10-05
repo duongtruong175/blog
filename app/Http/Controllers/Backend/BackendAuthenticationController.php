@@ -33,14 +33,14 @@ class BackendAuthenticationController extends Controller
         $remember = $request->remember;
 
         $permission = DB::table('users')
-                    ->join('role_user', 'users.id', '=', 'role_user.user_id')
-                    ->join('roles', 'roles.id', '=', 'role_user.role_id')
-                    ->select('roles.name', 'users.password')
-                    ->where([
-                        ['users.email', $email],
-                        ['roles.name', 'admin']
-                    ])
-                    ->first();
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('roles', 'roles.id', '=', 'role_user.role_id')
+            ->select('roles.name', 'users.password')
+            ->where([
+                ['users.email', $email],
+                ['roles.name', 'admin']
+            ])
+            ->first();
 
         if ($permission && Hash::check($password, $permission->password)) {
             // redict login success, add session
@@ -51,7 +51,7 @@ class BackendAuthenticationController extends Controller
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our admin records.',
-        ]);
+        ])->withInput($request->all());
     }
 
     /**

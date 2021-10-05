@@ -9,7 +9,7 @@
 
         @include('layouts.backend_header')
     </head>
-    <body>
+    <body class="font-sans antialiased">
         <div class="min-h-screen">
             <!-- Responsive Left Navigation-->
             <nav class="lg:hidden py-6 px-6 border-b">
@@ -112,7 +112,7 @@
                             <form method="POST" action="{{ route('backend_auth.logout') }}">
                                 @csrf
                                 <button class="w-full" type="submit">
-                                    <a class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded">
+                                    <a class="flex items-center pl-3 py-3 pr-2 text-sm font-medium text-gray-500 hover:bg-indigo-50 rounded">
                                         <span class="inline-block mr-4">
                                             <x-logout-icon class="text-gray-300 w-5 h-5" />
                                         </span>
@@ -208,7 +208,6 @@
                                         </span>
                                         <span>{{ __('Comments') }}</span>
                                     </a>
-                                @else
                                 @endif
                                 @if(request()->routeIs('*.create'))
                                     <span class="inline-block mx-3">

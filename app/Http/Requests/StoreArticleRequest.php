@@ -27,7 +27,22 @@ class StoreArticleRequest extends FormRequest
             //
             'title' => 'required|string|max:100|unique:articles,title,' . $this->id,
             'content' => 'required|string',
-            'image_url' => 'image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'image_url' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'categories' => 'array|max:3',
+            'categories.*' => 'integer|distinct',
+            'tags' => 'nullable|string|regex:/^[0-9A-Za-z ,]*$/'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'tags.regex' => 'The tags contains only numbers, letters and commas'
         ];
     }
 }

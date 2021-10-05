@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -58,8 +58,8 @@ class RegisteredUserController extends Controller
 
         // Send a mail
         $content = [
-            'title' => 'Mail from project laravel',
-            'body' => 'This is test function send mail'
+            'name' => $user->name,
+            'email' => $user->email
         ];
         Mail::to("projectt218@gmail.com")->send(new RegisterMail($content));
 

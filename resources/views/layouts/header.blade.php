@@ -7,8 +7,13 @@
 <link rel="shortcut icon" href="{{ asset('img/favicon/favicon.ico') }}">
 <meta name="msapplication-TileColor" content="#ff2d20">
 
-<!-- Fonts -->
+<!-- Fonts Google -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 
 <!-- Styles -->
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+<!-- Scripts -->
+<script src="{{ mix('js/app.js') }}" defer></script>

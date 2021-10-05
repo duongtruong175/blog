@@ -30,6 +30,6 @@ class RegisterMail extends Mailable
      */
     public function build()
     {
-        return $this->subject("Test mail laravel")->view('mail.register');
+        return $this->subject("A new registered user")->view('mail.register');
     }
 }
