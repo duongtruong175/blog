@@ -76,5 +76,5 @@ php artisan serve
 
 ## Usage
 
--   User interface: http://localhost:8000/
--   Admin interface: http://localhost:8000/admin (admin@gmail.com / 12345678)
+- User interface: <http://localhost:8000/>
+- Admin interface: <http://localhost:8000/admin> (admin@gmail.com / 12345678)
